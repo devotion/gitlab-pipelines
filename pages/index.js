@@ -20,11 +20,11 @@ const Home = () => {
     } else {
       Router.push("/config");
     }
-  }, []);
+  }, [token]);
 
   if (!token) {
     return (
-      <Layout title="Home">
+      <Layout title="Home" showHeader={false}>
         <LoadingPage />
       </Layout>
     );

@@ -1,8 +1,9 @@
 import Head from "next/head";
+import Header from "../components/header";
 
 import "./layout.scss";
 
-const Layout = ({ title, children }) => {
+const Layout = ({ title, children, showHeader = true }) => {
   return (
     <div>
       <Head>
@@ -11,6 +12,7 @@ const Layout = ({ title, children }) => {
         <link rel="icon" href="favicon.ico" type="image/x-icon" />
         <title>{title}</title>
       </Head>
+      {showHeader && <Header />}
       {children}
     </div>
   );

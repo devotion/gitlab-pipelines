@@ -4,7 +4,7 @@ import ConfigForm from "../components/forms/config-form";
 import "./config.scss";
 
 const Config = () => (
-  <Layout title="Config">
+  <Layout title="Config" showHeader={false}>
     <div className="config">
       <h1>Welcome to Gitlab Pipelines</h1>
       <ConfigForm />
