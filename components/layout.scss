@@ -1,0 +1,52 @@
+@import "../styles/shared.scss";
+
+:root {
+  --background: #ffffff;
+  --error: #ffa27b;
+  --text: #323232;
+  --text-reverse: #fff;
+  --green: #3ecf8e;
+  --light-green: #ecfaf7;
+  --blue: #69d5f8;
+  --orange: #fc6d27;
+
+  --input-bg: #f6f9fc;
+  --placeholder-text: #8898aa;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+html,
+body,
+#__next {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+  color: var(--text);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}

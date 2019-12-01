@@ -1,0 +1,19 @@
+.button {
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  letter-spacing: 0.025em;
+  line-height: 40px;
+  font-size: 1.5rem;
+  padding: 0 1.4rem;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-weight: 600;
+}
+
+.button-full {
+  color: var(--text-reverse);
+  background-color: var(--orange);
+}

@@ -1,0 +1,12 @@
+.config-form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  max-width: 67rem;
+  width: 100%;
+  margin: 0 auto;
+
+  > button {
+    margin-top: 1rem;
+  }
+}
