@@ -4,4 +4,4 @@ An easy way to check pipelines for your own gitlab projects
 
 ## Run the project locally
 
-* `cd ./frontend && yarn start`
+* `cd ./frontend && yarn dev`
