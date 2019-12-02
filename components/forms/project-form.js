@@ -22,9 +22,10 @@ const ProjectForm = ({ registry, token }) => {
           }
         }
       );
-      const data = res.json();
 
-      console.log(data);
+      const data = await res.json();
+
+      localStorage.setItem("gitlab-projects", JSON.stringify(data));
     } catch (error) {
       console.log(error);
     }

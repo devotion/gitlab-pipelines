@@ -10,6 +10,7 @@ import "./index.scss";
 const Home = () => {
   const [token, setToken] = useState();
   const [registry, setRegistry] = useState();
+  const [projects, setProjects] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem("gitlab-token");
@@ -21,6 +22,10 @@ const Home = () => {
     } else {
       Router.push("/config");
     }
+
+    const projects = localStorage.getItem("gitlab-projects");
+
+    if (projects) setProjects(JSON.parse(projects));
   }, [token]);
 
   if (!token) {
@@ -36,7 +41,11 @@ const Home = () => {
       <div className="home">
         <div className="home__left">
           <ProjectForm registry={registry} token={token} />
-          <div className="projects">Selected projects</div>
+          <div className="projects">
+            {projects.map(project => {
+              return <div key={project.id}>{project.name}</div>;
+            })}
+          </div>
         </div>
         <div className="home__right">Pipelines</div>
       </div>
