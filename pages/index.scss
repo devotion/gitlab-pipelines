@@ -1,10 +1,20 @@
 .home {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 
   background-color: var(--background);
   height: calc(100vh - 80px);
   flex: 1;
+  max-width: 120rem;
+  margin: 0 auto;
+  padding-top: 4rem;
+
+  .home__left {
+    flex: 25%;
+    background-color: var(--blue);
+  }
+
+  .home__right {
+    flex: 75%;
+    background-color: var(--green);
+  }
 }

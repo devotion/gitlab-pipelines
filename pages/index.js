@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Router from "next/router";
 
 import Layout from "../components/layout";
+import ProjectForm from "../components/forms/project-form";
 import LoadingPage from "../components/loading-page";
 
 import "./index.scss";
@@ -33,11 +34,11 @@ const Home = () => {
   return (
     <Layout title="Home">
       <div className="home">
-        <h1>You have logged in</h1>
-        <div>
-          LocalStorage reads this:{token} <br /> registry: {registry}
-          <br />
+        <div className="home__left">
+          <ProjectForm registry={registry} token={token} />
+          <div className="projects">Selected projects</div>
         </div>
+        <div className="home__right">Pipelines</div>
       </div>
     </Layout>
   );

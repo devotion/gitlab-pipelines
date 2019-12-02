@@ -1,0 +1,14 @@
+.project-form {
+  display: flex;
+  width: 100%;
+  align-items: center;
+
+  > button {
+    font-size: 3rem;
+    margin-left: 1rem;
+  }
+
+  input {
+    width: 30rem;
+  }
+}

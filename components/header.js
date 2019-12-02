@@ -11,7 +11,7 @@ const Header = () => {
   return (
     <header className="header">
       <div>
-        <div>GitLab Pipelines</div>
+        <div>GitLab Pipelines: {localStorage.getItem("gitlab-registry")}</div>
         <button className="button button-full" onClick={logout}>
           Logout
         </button>
