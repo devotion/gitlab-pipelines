@@ -10,11 +10,13 @@
 
   .home__left {
     flex: 25%;
-    background-color: var(--blue);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-right: 4rem;
   }
 
   .home__right {
     flex: 75%;
-    background-color: var(--green);
   }
 }

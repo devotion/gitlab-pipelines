@@ -4,13 +4,17 @@ import Router from "next/router";
 import Layout from "../components/layout";
 import ProjectForm from "../components/forms/project-form";
 import LoadingPage from "../components/loading-page";
+import MyProjects from "../components/my-projects";
+import Pipelines from "../components/pipelines";
+
+import MyProjectsContext from "../contexts/my-projects";
 
 import "./index.scss";
 
 const Home = () => {
   const [token, setToken] = useState();
   const [registry, setRegistry] = useState();
-  const [projects, setProjects] = useState([]);
+  const [selectedProject, setSelectedProject] = useState(null);
 
   useEffect(() => {
     const token = localStorage.getItem("gitlab-token");
@@ -22,10 +26,6 @@ const Home = () => {
     } else {
       Router.push("/config");
     }
-
-    const projects = localStorage.getItem("gitlab-projects");
-
-    if (projects) setProjects(JSON.parse(projects));
   }, [token]);
 
   if (!token) {
@@ -37,19 +37,24 @@ const Home = () => {
   }
 
   return (
-    <Layout title="Home">
-      <div className="home">
-        <div className="home__left">
-          <ProjectForm registry={registry} token={token} />
-          <div className="projects">
-            {projects.map(project => {
-              return <div key={project.id}>{project.name}</div>;
-            })}
+    <MyProjectsContext>
+      <Layout title="Home">
+        <div className="home">
+          <div className="home__left">
+            <ProjectForm registry={registry} token={token} />
+            <MyProjects setSelectedProject={setSelectedProject} />
+            <div></div>
+          </div>
+          <div className="home__right">
+            <Pipelines
+              selectedProject={selectedProject}
+              token={token}
+              registry={registry}
+            />
           </div>
         </div>
-        <div className="home__right">Pipelines</div>
-      </div>
-    </Layout>
+      </Layout>
+    </MyProjectsContext>
   );
 };
 

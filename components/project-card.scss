@@ -1,0 +1,22 @@
+@import "../styles/settings.scss";
+
+.project-card {
+  // box-shadow: 0 4px 35px 0 rgba(23, 55, 87, 0.1),
+  //   0 5px 15px 0 rgba(0, 0, 0, 0.07);
+  box-shadow: $inputSelectedShadow;
+  cursor: pointer;
+  transition: background-color 0.1s ease;
+
+  &:hover {
+    background-color: var(--input-bg);
+  }
+
+  padding: 1rem;
+  .project-card__name {
+    font-weight: 600;
+  }
+
+  .project-card__namespace {
+    font-size: 1.4rem;
+  }
+}

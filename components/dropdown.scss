@@ -1,0 +1,16 @@
+@import "../styles/shared.scss";
+@import "../styles/settings.scss";
+
+.dropdown {
+  box-shadow: $inputSelectedShadow;
+  background-color: #fff;
+  > li {
+    padding: 1rem;
+    cursor: pointer;
+    width: 30rem;
+
+    &:hover {
+      background-color: var(--input-bg);
+    }
+  }
+}
