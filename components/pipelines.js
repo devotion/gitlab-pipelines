@@ -5,11 +5,15 @@ const Pipelines = ({ selectedProject, token, registry }) => {
 
   const { id } = selectedProject;
 
-  const [pipelines] = useFetch(`${registry}/projects/${id}/pipelines`, {
-    headers: {
-      "Private-Token": token
-    }
-  });
+  const [pipelines] = useFetch(
+    `${registry}/projects/${id}/pipelines`,
+    {
+      headers: {
+        "Private-Token": token
+      }
+    },
+    []
+  );
   return <div className="pipelines">{JSON.stringify(pipelines)}</div>;
 };
 

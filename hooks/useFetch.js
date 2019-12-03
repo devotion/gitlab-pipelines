@@ -5,8 +5,6 @@ export default (endpoint, options, defaultData = {}) => {
   const mounted = useRef(true);
   const [data, setData] = useState(defaultData);
 
-  console.log(endpoint);
-
   const fetchData = useCallback(async () => {
     const response = await fetch(endpoint, options);
     const data = await response.json();
