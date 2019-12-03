@@ -6,7 +6,13 @@ export default ({ children }) => {
   const [myProjects, setMyProjects] = useState([]);
 
   const addMyProject = (id, name, nameWithNamespace) => {
-    setMyProjects([...myProjects, { id, name, nameWithNamespace }]);
+    const isDuplicateProject = !!myProjects.find(project => {
+      return project.id === id;
+    });
+
+    if (!isDuplicateProject) {
+      setMyProjects([...myProjects, { id, name, nameWithNamespace }]);
+    }
   };
 
   return (
