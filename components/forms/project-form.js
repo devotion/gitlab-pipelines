@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import fetch from "isomorphic-unfetch";
 
 import TextInput from "../form/text-input";
 import Dropdown from "../dropdown";
+import { AuthContext } from "../../contexts/auth";
 
 import "./project-form.scss";
 
@@ -12,10 +13,14 @@ const validationSchema = Yup.object().shape({
   project: Yup.string()
 });
 
-const ProjectForm = ({ registry, token }) => {
+const ProjectForm = () => {
   const [projects, setProjects] = useState([]);
   const [projectsError, setProjectsError] = useState("");
   const [dropdownActive, setDropdownActive] = useState(false);
+
+  const {
+    credentials: { token, registry }
+  } = useContext(AuthContext);
 
   const onSubmit = async values => {
     if (!values.project) {
@@ -50,15 +55,8 @@ const ProjectForm = ({ registry, token }) => {
       validationSchema={validationSchema}
     >
       <Form className="project-form">
-        <TextInput
-          placeholder="Enter your project name"
-          id="project"
-          name="project"
-        />
+        <TextInput placeholder="Search projects" id="project" name="project" />
 
-        <button type="submit" className="button button-full">
-          +
-        </button>
         {dropdownActive && (
           <Dropdown
             projects={projects}

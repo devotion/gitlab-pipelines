@@ -1,16 +1,17 @@
 import Head from "next/head";
-import Header from "../components/header";
+
+import Sidebar from "./sidebar";
 
 import "./layout.scss";
 
-const Layout = ({ title, children, showHeader = true }) => {
+const Layout = ({ title, children, showSidebar = true }) => {
   return (
-    <div>
+    <div className="layout">
       <Head>
         <title>{title}</title>
       </Head>
-      {showHeader && <Header />}
-      {children}
+      {showSidebar && <Sidebar />}
+      <main>{children}</main>
     </div>
   );
 };

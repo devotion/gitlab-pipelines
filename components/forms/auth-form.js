@@ -1,10 +1,11 @@
+import { useContext } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import Router from "next/router";
 
 import TextInput from "../form/text-input";
+import { AuthContext } from "../../contexts/auth";
 
-import "./config-form.scss";
+import "./auth-form.scss";
 
 const validationSchema = Yup.object().shape({
   registry: Yup.string()
@@ -14,12 +15,10 @@ const validationSchema = Yup.object().shape({
   token: Yup.string().required("Required")
 });
 
-const ConfigForm = () => {
+const AuthForm = () => {
+  const { login } = useContext(AuthContext);
   const onSubmit = values => {
-    localStorage.setItem("gitlab-token", values.token);
-    localStorage.setItem("gitlab-registry", values.registry);
-
-    Router.push("/");
+    login(values.token, values.registry);
   };
 
   return (
@@ -43,4 +42,4 @@ const ConfigForm = () => {
   );
 };
 
-export default ConfigForm;
+export default AuthForm;

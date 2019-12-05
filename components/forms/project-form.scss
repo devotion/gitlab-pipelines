@@ -1,16 +1,14 @@
 .project-form {
-  display: flex;
   width: 100%;
-  align-items: center;
   position: relative;
+
+  > input {
+    width: 100%;
+  }
 
   > button {
     font-size: 3rem;
     margin-left: 1rem;
-  }
-
-  input {
-    width: 30rem;
   }
 
   .dropdown {

@@ -1,0 +1,31 @@
+.sidebar {
+  position: fixed;
+  border-right: 1px solid #d8dee6;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 24rem;
+  display: flex;
+  flex-direction: column;
+
+  padding: 2rem 1.2rem;
+
+  > h1 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+  }
+
+  .my-projects {
+    margin-top: 4rem;
+  }
+
+  > button {
+    cursor: pointer;
+    margin-top: auto;
+    border: none;
+    outline: none;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+}

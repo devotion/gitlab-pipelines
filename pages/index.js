@@ -1,29 +1,20 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Router from "next/router";
 
 import Layout from "../components/layout";
-import ProjectForm from "../components/forms/project-form";
 import LoadingPage from "../components/loading-page";
-import MyProjects from "../components/my-projects";
-import Pipelines from "../components/pipelines";
 
-import MyProjectsContext from "../contexts/my-projects";
+import { AuthContext } from "../contexts/auth";
 
 import "./index.scss";
 
 const Home = () => {
-  const [token, setToken] = useState();
-  const [registry, setRegistry] = useState();
-  const [selectedProject, setSelectedProject] = useState(null);
+  const {
+    credentials: { token }
+  } = useContext(AuthContext);
 
   useEffect(() => {
-    const token = localStorage.getItem("gitlab-token");
-    const registry = localStorage.getItem("gitlab-registry");
-
-    if (token) {
-      setToken(token);
-      setRegistry(registry);
-    } else {
+    if (!token) {
       Router.push("/config");
     }
   }, [token]);
@@ -37,24 +28,12 @@ const Home = () => {
   }
 
   return (
-    <MyProjectsContext>
-      <Layout title="Home">
-        <div className="home">
-          <div className="home__left">
-            <ProjectForm registry={registry} token={token} />
-            <MyProjects setSelectedProject={setSelectedProject} />
-            <div></div>
-          </div>
-          <div className="home__right">
-            <Pipelines
-              selectedProject={selectedProject}
-              token={token}
-              registry={registry}
-            />
-          </div>
-        </div>
-      </Layout>
-    </MyProjectsContext>
+    <Layout title="Home">
+      <div className="home">
+        <h2>Welcome to GitLab Pipelines.</h2>
+        <p>Choose a project and let's start</p>
+      </div>
+    </Layout>
   );
 };
 
