@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import fetch from "isomorphic-unfetch";
 
-export default (endpoint, options, defaultData = {}) => {
+export default (endpoint, options, trackingArray = [], defaultData = {}) => {
   const [data, setData] = useState(defaultData);
 
   const fetchData = useCallback(async () => {
@@ -13,7 +13,7 @@ export default (endpoint, options, defaultData = {}) => {
 
   useEffect(() => {
     fetchData();
-  }, [endpoint]);
+  }, trackingArray);
 
   return [data, fetchData];
 };
