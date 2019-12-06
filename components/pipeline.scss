@@ -5,13 +5,14 @@
   border-radius: 10px;
   background-color: var(--background);
   display: flex;
-  width: 30%;
+  max-width: 67rem;
 
   > div:first-child {
     .pipeline__branch {
       font-weight: 500;
       display: flex;
       align-items: center;
+      width: 30rem;
 
       > svg {
         margin-right: 0.5rem;
