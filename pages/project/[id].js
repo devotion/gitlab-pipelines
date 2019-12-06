@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import Layout from '../../components/layout'
 import { AuthContext } from '../../contexts/auth'
 import { MyProjectsContext } from '../../contexts/my-projects'
@@ -8,6 +8,7 @@ import useFetch from '../../hooks/useFetch'
 import useInterval from '../../hooks/useInterval'
 import getSelectedProject from '../../helpers/get-selected-project'
 import RefreshIcon from 'react-ionicons/lib/MdRefresh'
+import { useRouter } from 'next/router'
 
 import './project.scss'
 
@@ -15,6 +16,8 @@ const Project = ({ id }) => {
   const {
     credentials: { registry, token }
   } = useContext(AuthContext)
+
+  const router = useRouter()
 
   const [pipelines, fetchingPipelines, refetchData] = useFetch(
     `${registry}/projects/${id}/pipelines`,
@@ -32,7 +35,7 @@ const Project = ({ id }) => {
   }
 
   const renderContent = () => {
-    if (fetchingPipelines || !myProjects.length) return <LoadingPage />
+    if (fetchingPipelines) return <LoadingPage />
 
     if (pipelines.error) {
       const errorMessage =
@@ -64,6 +67,11 @@ const Project = ({ id }) => {
         })}
       </div>
     )
+  }
+
+  if (myProjects.length && !getSelectedProject(id, myProjects)) {
+    router.push('/')
+    return null
   }
 
   return (

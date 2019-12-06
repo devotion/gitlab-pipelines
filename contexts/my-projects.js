@@ -1,9 +1,11 @@
 import { createContext, useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 
 export const MyProjectsContext = createContext({})
 
 export default ({ children }) => {
   const [myProjects, setMyProjects] = useState([])
+  const router = useRouter()
 
   const addMyProject = (id, name, nameWithNamespace) => {
     const isDuplicateProject = !!myProjects.find(project => {
@@ -18,6 +20,15 @@ export default ({ children }) => {
     }
   }
 
+  const deleteMyProject = id => {
+    const projects = myProjects.filter(project => project.id !== id)
+
+    if (!projects.length) router.push('/')
+
+    setMyProjects(projects)
+    localStorage.setItem('gitlab-projects', JSON.stringify(projects))
+  }
+
   useEffect(() => {
     const projects = localStorage.getItem('gitlab-projects')
 
@@ -28,7 +39,8 @@ export default ({ children }) => {
     <MyProjectsContext.Provider
       value={{
         myProjects,
-        addMyProject
+        addMyProject,
+        deleteMyProject
       }}
     >
       {children}

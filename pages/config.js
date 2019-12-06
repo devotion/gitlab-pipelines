@@ -18,6 +18,10 @@ const Config = () => {
     <div className="config">
       <h1>Welcome to Gitlab Pipelines</h1>
       <AuthForm />
+      <p>
+        Gitlab's registry name and token are only stored on your browser's
+        localStorage and nowhere else.
+      </p>
     </div>
   )
 }
