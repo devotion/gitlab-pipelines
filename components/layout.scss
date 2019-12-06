@@ -7,12 +7,23 @@
   --text: #323232;
   --text-reverse: #fff;
   --green: #3ecf8e;
-  --light-green: #ecfaf7;
   --blue: #69d5f8;
   --orange: #fc6d27;
+  --error: #ffa27b;
+  // $errorBackground: #ffe7cb;
 
   --input-bg: #f6f9fc;
   --placeholder-text: #8898aa;
+
+  --tag-green: #ecfaf7;
+  --tag-red: #ffeded;
+  --tag-yellow: #f9f6df;
+  --tag-orange: #fffaf0;
+  --tag-gray: #edf2f7;
+
+  --shadow-1: 0 5px 6px 0 rgba(0, 0, 0, 0.05);
+  --shadow-1-hover: 0 10px 12px 0 rgba(0, 0, 0, 0.1);
+  --input-selected-shadow: 0 0 0 1px #e4effa;
 }
 
 * {

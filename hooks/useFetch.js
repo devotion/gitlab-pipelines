@@ -5,6 +5,8 @@ export default (endpoint, options, trackingArray = [], defaultData = {}) => {
   const [data, setData] = useState(defaultData);
 
   const fetchData = useCallback(async () => {
+    if (!endpoint.includes("https")) return;
+
     const response = await fetch(endpoint, options);
     const data = await response.json();
 

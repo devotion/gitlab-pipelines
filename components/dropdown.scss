@@ -1,8 +1,7 @@
 @import "../styles/shared.scss";
-@import "../styles/settings.scss";
 
 .dropdown {
-  box-shadow: $inputSelectedShadow;
+  box-shadow: var(--input-selected-shadow);
   background-color: #fff;
   > li {
     padding: 1rem;

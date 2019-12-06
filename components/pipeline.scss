@@ -1,0 +1,55 @@
+.pipeline {
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow-1);
+  display: inline-flex;
+  padding: 1.5rem;
+  border-radius: 10px;
+
+  .pipeline__branch {
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    max-width: 25rem;
+    width: 100%;
+
+    > svg {
+      margin-right: 0.5rem;
+    }
+  }
+
+  .pipeline__status {
+    padding: 0.2rem 1rem;
+
+    margin-left: 1rem;
+
+    text-align: center;
+    border-radius: 4px;
+    font-size: 1.4rem;
+    font-weight: 500;
+    display: inline-flex;
+
+    &--running {
+      background-color: var(--tag-gray);
+    }
+
+    &--pending {
+      background-color: var(--tag-gray);
+    }
+
+    &--success {
+      background-color: var(--tag-green);
+    }
+
+    &--failed {
+      background-color: var(--tag-red);
+    }
+
+    &--canceled {
+      background-color: var(--tag-orange);
+    }
+
+    &--skipped {
+      background-color: var(--tag-yellow);
+    }
+  }
+}
