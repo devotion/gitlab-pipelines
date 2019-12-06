@@ -28,7 +28,7 @@
     position: relative;
 
     &::before {
-      content: "!";
+      content: '!';
       display: flex;
       align-items: center;
       justify-content: center;
@@ -38,7 +38,7 @@
       height: 2rem;
       border-radius: 50%;
       z-index: 10;
-      background-color: #ffe7cb;
+      background-color: var(--error-bg);
       position: absolute;
       right: 1rem;
       top: 50%;

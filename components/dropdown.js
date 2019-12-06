@@ -1,13 +1,13 @@
-import { useContext } from "react";
-import "./dropdown.scss";
-import { MyProjectsContext } from "../contexts/my-projects";
+import { useContext } from 'react'
+import './dropdown.scss'
+import { MyProjectsContext } from '../contexts/my-projects'
 
 const Dropdown = ({ projects = [], error, closeDropdown }) => {
   if (error) {
-    return <div className="dropdown error">{error}</div>;
+    return <div className="dropdown error">{error}</div>
   }
 
-  const { addMyProject } = useContext(MyProjectsContext);
+  const { addMyProject } = useContext(MyProjectsContext)
 
   return (
     <ul className="dropdown">
@@ -20,16 +20,16 @@ const Dropdown = ({ projects = [], error, closeDropdown }) => {
                 project.id,
                 project.name,
                 project.name_with_namespace
-              );
-              closeDropdown();
+              )
+              closeDropdown()
             }}
           >
             {project.name}
           </li>
-        );
+        )
       })}
     </ul>
-  );
-};
+  )
+}
 
-export default Dropdown;
+export default Dropdown

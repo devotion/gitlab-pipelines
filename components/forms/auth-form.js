@@ -1,32 +1,32 @@
-import { useContext } from "react";
-import { Formik, Form } from "formik";
-import * as Yup from "yup";
+import { useContext } from 'react'
+import { Formik, Form } from 'formik'
+import * as Yup from 'yup'
 
-import TextInput from "../form/text-input";
-import { AuthContext } from "../../contexts/auth";
+import TextInput from '../form/text-input'
+import { AuthContext } from '../../contexts/auth'
 
-import "./auth-form.scss";
+import './auth-form.scss'
 
 const validationSchema = Yup.object().shape({
   registry: Yup.string()
-    .required("Required")
+    .required('Required')
     .url(),
   // .matches(/(gitlab)/),
-  token: Yup.string().required("Required")
-});
+  token: Yup.string().required('Required')
+})
 
 const AuthForm = () => {
-  const { login } = useContext(AuthContext);
+  const { login } = useContext(AuthContext)
   const onSubmit = values => {
-    login(values.token, values.registry);
-  };
+    login(values.token, values.registry)
+  }
 
   return (
     <Formik
       onSubmit={onSubmit}
       initialValues={{
-        registry: "",
-        token: ""
+        registry: '',
+        token: ''
       }}
       validationSchema={validationSchema}
     >
@@ -39,7 +39,7 @@ const AuthForm = () => {
         </button>
       </Form>
     </Formik>
-  );
-};
+  )
+}
 
-export default AuthForm;
+export default AuthForm

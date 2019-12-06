@@ -1,17 +1,17 @@
-import { useContext } from "react";
-import AuthForm from "../components/forms/auth-form";
-import { AuthContext } from "../contexts/auth";
-import Router from "next/router";
+import { useContext } from 'react'
+import AuthForm from '../components/forms/auth-form'
+import { AuthContext } from '../contexts/auth'
+import Router from 'next/router'
 
-import "./config.scss";
+import './config.scss'
 
 const Config = () => {
   const {
     credentials: { token, registry }
-  } = useContext(AuthContext);
+  } = useContext(AuthContext)
 
   if (token && registry) {
-    Router.push("/");
+    Router.push('/')
   }
 
   return (
@@ -19,7 +19,7 @@ const Config = () => {
       <h1>Welcome to Gitlab Pipelines</h1>
       <AuthForm />
     </div>
-  );
-};
+  )
+}
 
-export default Config;
+export default Config

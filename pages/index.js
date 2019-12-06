@@ -1,30 +1,30 @@
-import { useState, useEffect, useContext } from "react";
-import Router from "next/router";
+import { useState, useEffect, useContext } from 'react'
+import Router from 'next/router'
 
-import Layout from "../components/layout";
-import LoadingPage from "../components/loading-page";
+import Layout from '../components/layout'
+import LoadingPage from '../components/loading-page'
 
-import { AuthContext } from "../contexts/auth";
+import { AuthContext } from '../contexts/auth'
 
-import "./index.scss";
+import './index.scss'
 
 const Home = () => {
   const {
     credentials: { token }
-  } = useContext(AuthContext);
+  } = useContext(AuthContext)
 
   useEffect(() => {
     if (!token) {
-      Router.push("/config");
+      Router.push('/config')
     }
-  }, [token]);
+  }, [token])
 
   if (!token) {
     return (
       <Layout title="Home" showHeader={false}>
         <LoadingPage />
       </Layout>
-    );
+    )
   }
 
   return (
@@ -34,7 +34,7 @@ const Home = () => {
         <p>Choose a project and let's start</p>
       </div>
     </Layout>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

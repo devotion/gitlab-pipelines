@@ -1,10 +1,10 @@
-import App from "next/app";
-import AuthContext from "../contexts/auth";
-import MyProjectsContext from "../contexts/my-projects";
+import App from 'next/app'
+import AuthContext from '../contexts/auth'
+import MyProjectsContext from '../contexts/my-projects'
 
 class MyApp extends App {
   render() {
-    const { Component, pageProps } = this.props;
+    const { Component, pageProps } = this.props
 
     return (
       <AuthContext>
@@ -12,8 +12,8 @@ class MyApp extends App {
           <Component {...pageProps} />
         </MyProjectsContext>
       </AuthContext>
-    );
+    )
   }
 }
 
-export default MyApp;
+export default MyApp

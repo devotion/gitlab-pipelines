@@ -1,46 +1,46 @@
-import { createContext, useState, useEffect } from "react";
-import Router from "next/router";
+import { createContext, useState, useEffect } from 'react'
+import Router from 'next/router'
 
-export const AuthContext = createContext({});
+export const AuthContext = createContext({})
 
 export default ({ children }) => {
   const [credentials, setCredentials] = useState({
-    token: "",
-    registry: ""
-  });
+    token: '',
+    registry: ''
+  })
 
   useEffect(() => {
-    const token = localStorage.getItem("gitlab-token", token);
-    const registry = localStorage.getItem("gitlab-registry", registry);
+    const token = localStorage.getItem('gitlab-token', token)
+    const registry = localStorage.getItem('gitlab-registry', registry)
 
     if (token && registry) {
-      setCredentials({ token, registry });
+      setCredentials({ token, registry })
     }
-  }, []);
+  }, [])
 
   const login = (token, registry) => {
-    localStorage.setItem("gitlab-token", token);
-    localStorage.setItem("gitlab-registry", registry);
+    localStorage.setItem('gitlab-token', token)
+    localStorage.setItem('gitlab-registry', registry)
 
     setCredentials({
       token,
       registry
-    });
+    })
 
-    Router.push("/");
-  };
+    Router.push('/')
+  }
 
   const logout = () => {
-    localStorage.removeItem("gitlab-token");
-    localStorage.removeItem("gitlab-registry");
+    localStorage.removeItem('gitlab-token')
+    localStorage.removeItem('gitlab-registry')
 
-    Router.push("/config");
+    Router.push('/config')
 
     setCredentials({
-      token: "",
-      registry: ""
-    });
-  };
+      token: '',
+      registry: ''
+    })
+  }
 
   return (
     <AuthContext.Provider
@@ -52,5 +52,5 @@ export default ({ children }) => {
     >
       {children}
     </AuthContext.Provider>
-  );
-};
+  )
+}

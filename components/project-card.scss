@@ -1,9 +1,11 @@
 .project-card {
-  transition: background-color 0.1s ease;
-
   .project-card__name {
     font-weight: 600;
     cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   .project-card__namespace {

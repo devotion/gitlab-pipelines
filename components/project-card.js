@@ -1,13 +1,7 @@
-import Link from "next/link";
-import { useContext } from "react";
-import "./project-card.scss";
-import { AuthContext } from "../contexts/auth";
+import Link from 'next/link'
+import './project-card.scss'
 
 const ProjectCard = ({ id, name, nameWithNamespace }) => {
-  const {
-    credentials: { token, registry }
-  } = useContext(AuthContext);
-
   return (
     <div className="project-card">
       <Link href={`/project/[id]`} as={`/project/${id}`}>
@@ -15,7 +9,7 @@ const ProjectCard = ({ id, name, nameWithNamespace }) => {
       </Link>
       <div className="project-card__namespace">{nameWithNamespace}</div>
     </div>
-  );
-};
+  )
+}
 
-export default ProjectCard;
+export default ProjectCard

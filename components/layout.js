@@ -1,8 +1,8 @@
-import Head from "next/head";
+import Head from 'next/head'
 
-import Sidebar from "./sidebar";
+import Sidebar from './sidebar'
 
-import "./layout.scss";
+import './layout.scss'
 
 const Layout = ({ title, children, showSidebar = true }) => {
   return (
@@ -13,7 +13,7 @@ const Layout = ({ title, children, showSidebar = true }) => {
       {showSidebar && <Sidebar />}
       <main>{children}</main>
     </div>
-  );
-};
+  )
+}
 
-export default Layout;
+export default Layout
