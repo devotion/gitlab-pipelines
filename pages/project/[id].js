@@ -7,6 +7,7 @@ import Pipeline from '../../components/pipeline'
 import useFetch from '../../hooks/useFetch'
 import useInterval from '../../hooks/useInterval'
 import getSelectedProject from '../../helpers/get-selected-project'
+import RefreshIcon from 'react-ionicons/lib/MdRefresh'
 
 import './project.scss'
 
@@ -15,12 +16,10 @@ const Project = ({ id }) => {
     credentials: { registry, token }
   } = useContext(AuthContext)
 
-  const [pipelines, refetchData] = useFetch(
+  const [pipelines, fetchingPipelines, refetchData] = useFetch(
     `${registry}/projects/${id}/pipelines`,
     {
-      headers: {
-        'Private-Token': token
-      }
+      headers: { 'Private-Token': token }
     },
     [id, registry, token],
     []
@@ -32,18 +31,22 @@ const Project = ({ id }) => {
     useInterval(refetchData, 10000)
   }
 
-  if (!pipelines || !pipelines.length || !myProjects.length)
-    return (
-      <Layout title="Loading">
-        <LoadingPage />
-      </Layout>
-    )
+  const renderContent = () => {
+    if (fetchingPipelines || !myProjects.length) return <LoadingPage />
 
-  return (
-    <Layout title={'GitLab project'}>
-      <div className="project__header">
-        <h1>{getSelectedProject(id, myProjects).name}</h1>
-      </div>
+    if (pipelines.error) {
+      const errorMessage =
+        pipelines.error_description || pipelines.error || 'There was an error'
+      return (
+        <div className="project__error">
+          <h3>{errorMessage}</h3>
+        </div>
+      )
+    }
+
+    if (!pipelines.length) return null
+
+    return (
       <div className="project">
         {pipelines.map(pipeline => {
           const { id, status, ref, web_url, updated_at, created_at } = pipeline
@@ -60,6 +63,20 @@ const Project = ({ id }) => {
           )
         })}
       </div>
+    )
+  }
+
+  return (
+    <Layout title={'GitLab pipelines'}>
+      <div className="project__header">
+        <h1>
+          {myProjects.length ? getSelectedProject(id, myProjects).name : null}
+        </h1>
+        <button onClick={refetchData}>
+          <RefreshIcon />
+        </button>
+      </div>
+      {renderContent()}
     </Layout>
   )
 }

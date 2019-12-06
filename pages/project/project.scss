@@ -3,8 +3,22 @@
   padding: 1.2rem;
   box-shadow: var(--box-shadow-1);
   border-top: 4px solid var(--orange);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
   > h1 {
     font-size: 1.8rem;
+  }
+
+  > button {
+    cursor: pointer;
+    outline: none;
+    border: none;
+
+    > svg {
+      fill: var(--placeholder-text);
+    }
   }
 }
 
@@ -17,4 +31,19 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+}
+
+.project__error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: var(--error);
+}
+
+.project__empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
