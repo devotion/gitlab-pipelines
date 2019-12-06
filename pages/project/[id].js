@@ -24,7 +24,7 @@ const Project = ({ id }) => {
     []
   );
 
-  // useInterval(refetchData, 10000);
+  useInterval(refetchData, 10000);
 
   if (!pipelines || !pipelines.length)
     return (
