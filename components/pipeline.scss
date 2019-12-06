@@ -5,6 +5,11 @@
   padding: 1.5rem;
   border-radius: 10px;
 
+  > div,
+  a {
+    margin-left: 1.5rem;
+  }
+
   .pipeline__branch {
     font-weight: 500;
     display: flex;
@@ -19,8 +24,6 @@
 
   .pipeline__status {
     padding: 0.2rem 1rem;
-
-    margin-left: 1rem;
 
     text-align: center;
     border-radius: 4px;
@@ -51,5 +54,23 @@
     &--skipped {
       background-color: var(--tag-yellow);
     }
+  }
+
+  .pipeline__time-elapsed {
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+
+    > svg {
+      width: 1.6rem;
+    }
+  }
+
+  .pipeline__gitlab-url {
+    color: var(--text);
+    font-size: 1.4rem;
+
+    display: flex;
+    align-items: center;
   }
 }

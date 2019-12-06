@@ -24,7 +24,7 @@ const Project = ({ id }) => {
     []
   );
 
-  useInterval(refetchData, 10000);
+  // useInterval(refetchData, 10000);
 
   if (!pipelines || !pipelines.length)
     return (
@@ -37,8 +37,18 @@ const Project = ({ id }) => {
     <Layout title={"GitLab project"}>
       <div className="project">
         {pipelines.map(pipeline => {
-          const { id, status, ref } = pipeline;
-          return <Pipeline key={id} id={id} status={status} branch={ref} />;
+          const { id, status, ref, web_url, updated_at, created_at } = pipeline;
+          return (
+            <Pipeline
+              key={id}
+              id={id}
+              status={status}
+              branch={ref}
+              gitlabUrl={web_url}
+              updatedAt={updated_at}
+              createdAt={created_at}
+            />
+          );
         })}
       </div>
     </Layout>
