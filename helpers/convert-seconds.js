@@ -12,5 +12,13 @@ export default secondsElapsed => {
     return seconds < 10 ? `0${seconds}` : seconds
   }
 
+  if (secondsElapsed > 604800)
+    return `${Math.floor(secondsElapsed / 604800)} week(s)`
+
+  if (secondsElapsed > 86400)
+    return `${Math.floor(secondsElapsed / 86400)} day(s)`
+
+  if (secondsElapsed > 3600) return `${Math.floor(secondsElapsed / 3600)} h`
+
   return `${createMinutes()}:${createSeconds()}`
 }
