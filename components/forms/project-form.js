@@ -59,7 +59,7 @@ const ProjectForm = () => {
       }}
       validationSchema={validationSchema}
     >
-      <Form className="project-form">
+      <Form className="project-form" autoComplete="off">
         <div className="project-form__search">
           <TextInput
             placeholder="Search projects"
