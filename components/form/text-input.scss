@@ -20,8 +20,16 @@
       color: var(--placeholder-text) !important;
     }
 
-    &:focus + .input__selected {
+    &:focus + .input__placeholder {
+      padding-left: 0.5rem;
+      padding-right: 1rem;
       background-color: white;
+      top: 0.5rem;
+      font-size: 1rem;
+      color: var(--placeholder-text);
+      z-index: 10;
+      background-color: var(--background);
+      border-radius: 10px;
     }
   }
 
