@@ -16,6 +16,7 @@
     cursor: pointer;
     outline: none;
     border: none;
+    background-color: var(--input-bg);
 
     > svg {
       fill: var(--placeholder-text);
