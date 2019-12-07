@@ -10,8 +10,8 @@ import './auth-form.scss'
 const validationSchema = Yup.object().shape({
   registry: Yup.string()
     .required('Required')
-    .url(),
-  // .matches(/(gitlab)/),
+    .url()
+    .matches(/(gitlab)/),
   token: Yup.string().required('Required')
 })
 
@@ -35,7 +35,7 @@ const AuthForm = () => {
         <TextInput placeholder="Token" id="token" name="token" />
 
         <button type="submit" className="button button-full">
-          Check your pipes
+          Sign in
         </button>
       </Form>
     </Formik>

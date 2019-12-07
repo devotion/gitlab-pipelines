@@ -1,8 +1,10 @@
-@import "../styles/shared.scss";
+@import '../styles/shared.scss';
 
 .dropdown {
-  box-shadow: var(--input-selected-shadow);
+  // box-shadow: var(--input-selected-shadow);
   background-color: #fff;
+  position: absolute;
+  // height: 100%;
   > li {
     padding: 1rem;
     cursor: pointer;

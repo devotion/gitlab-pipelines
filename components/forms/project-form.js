@@ -5,6 +5,7 @@ import fetch from 'isomorphic-unfetch'
 
 import TextInput from '../form/text-input'
 import Dropdown from '../dropdown'
+import LoadingSpinner from '../loading/loading-spinner'
 import { AuthContext } from '../../contexts/auth'
 
 import './project-form.scss'
@@ -17,6 +18,7 @@ const ProjectForm = () => {
   const [projects, setProjects] = useState([])
   const [projectsError, setProjectsError] = useState('')
   const [dropdownActive, setDropdownActive] = useState(false)
+  const [fetchingProjects, setFetchingProjects] = useState(false)
 
   const {
     credentials: { token, registry }
@@ -27,6 +29,8 @@ const ProjectForm = () => {
       setDropdownActive(false)
       return
     }
+
+    setFetchingProjects(true)
     const res = await fetch(
       `${registry}/search?scope=projects&search=${values.project}`,
       {
@@ -39,6 +43,7 @@ const ProjectForm = () => {
     const data = await res.json()
 
     setProjects(data)
+    setFetchingProjects(false)
 
     if (data.error) {
       setProjectsError(data.error_description)
@@ -55,12 +60,21 @@ const ProjectForm = () => {
       validationSchema={validationSchema}
     >
       <Form className="project-form">
-        <TextInput placeholder="Search projects" id="project" name="project" />
+        <div className="project-form__search">
+          <TextInput
+            placeholder="Search projects"
+            id="project"
+            name="project"
+          />
+
+          {fetchingProjects && <LoadingSpinner />}
+        </div>
 
         {dropdownActive && (
           <Dropdown
             projects={projects}
             error={projectsError}
+            fetchingProjects={fetchingProjects}
             closeDropdown={() => {
               setDropdownActive(false)
             }}

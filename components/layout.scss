@@ -2,7 +2,8 @@
 
 :root {
   --background: #ffffff;
-  --header-bg: #323232;
+  --black: #323232;
+  --white: #ffffff;
   --error: #ffa27b;
   --text: #323232;
   --text-reverse: #fff;
@@ -87,6 +88,6 @@ p {
 
 .layout {
   main {
-    margin-left: 24rem;
+    margin-left: 50rem;
   }
 }

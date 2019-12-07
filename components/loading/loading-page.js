@@ -1,8 +1,10 @@
 import './loading-page.scss'
 
+import LoadingSpinner from './loading-spinner'
+
 const LoadingPage = () => (
   <div className="loading-page">
-    <h1>Loading...</h1>
+    <LoadingSpinner />
   </div>
 )
 

@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react'
 import Router from 'next/router'
 
 import Layout from '../components/layout'
-import LoadingPage from '../components/loading-page'
+import LoadingPage from '../components/loading/loading-page'
 
 import { AuthContext } from '../contexts/auth'
 
