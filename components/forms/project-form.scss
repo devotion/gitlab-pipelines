@@ -14,9 +14,10 @@
 
   .dropdown {
     position: absolute;
-    top: 5rem;
+    top: 3.75rem;
     left: 0;
     z-index: 50;
+    border-top: none;
   }
 
   .project-form__search {
