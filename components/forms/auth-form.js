@@ -10,8 +10,7 @@ import './auth-form.scss'
 const validationSchema = Yup.object().shape({
   registry: Yup.string()
     .required('Required')
-    .url()
-    .matches(/(gitlab)/),
+    .url(),
   token: Yup.string().required('Required')
 })
 
