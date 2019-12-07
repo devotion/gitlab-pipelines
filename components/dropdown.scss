@@ -1,27 +1,39 @@
 @import '../styles/shared.scss';
 
 .dropdown {
-  box-shadow: var(--input-selected-shadow);
   background-color: #fff;
   position: absolute;
   border-radius: 0 0 4px 4px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  transition: all 0.5s;
+  height: 0%;
+  opacity: 0;
+  visibility: hidden;
+  z-index: -1;
 
   > li {
     padding: 1rem;
     cursor: pointer;
-    max-width: 26rem;
-    min-width: 26rem;
+    max-width: 32rem;
     width: 100%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: 1.4rem;
+    position: relative;
 
     &:hover {
       background-color: var(--input-bg);
     }
   }
+}
+
+.dropdown__active {
+  visibility: visible;
+  opacity: 1;
+  height: auto;
+  box-shadow: var(--input-selected-shadow);
+  z-index: 100;
 }

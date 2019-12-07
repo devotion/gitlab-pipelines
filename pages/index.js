@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react'
+import { useEffect, useContext } from 'react'
 import Router from 'next/router'
 
 import Layout from '../components/layout'

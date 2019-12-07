@@ -70,16 +70,15 @@ const ProjectForm = () => {
           {fetchingProjects && <LoadingSpinner />}
         </div>
 
-        {dropdownActive && (
-          <Dropdown
-            projects={projects}
-            error={projectsError}
-            fetchingProjects={fetchingProjects}
-            closeDropdown={() => {
-              setDropdownActive(false)
-            }}
-          />
-        )}
+        <Dropdown
+          projects={projects}
+          error={projectsError}
+          fetchingProjects={fetchingProjects}
+          closeDropdown={() => {
+            setDropdownActive(false)
+          }}
+          dropdownActive={dropdownActive}
+        />
       </Form>
     </Formik>
   )
