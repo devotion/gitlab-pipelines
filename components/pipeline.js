@@ -5,17 +5,35 @@ import HourglassIcon from 'react-ionicons/lib/MdTimer'
 import convertSeconds from '../helpers/convert-seconds'
 import './pipeline.scss'
 
-const Pipeline = ({ id, status, branch, gitlabUrl, createdAt, updatedAt }) => {
+const Pipeline = ({
+  id,
+  status,
+  branch,
+  gitlabUrl,
+  createdAt,
+  updatedAt,
+  setSingleFilter
+}) => {
   const secondsElapsed = dayjs(updatedAt).diff(dayjs(createdAt), 'seconds')
 
   return (
     <div className="pipeline">
       <div>
-        <div className="pipeline__branch">
+        <div
+          className="pipeline__branch"
+          onClick={() => {
+            setSingleFilter('ref', branch)
+          }}
+        >
           <BranchIcon />
           {branch}
         </div>
-        <div className={`pipeline__status pipeline__status--${status}`}>
+        <div
+          className={`pipeline__status pipeline__status--${status}`}
+          onClick={() => {
+            setSingleFilter('status', status)
+          }}
+        >
           {status}
         </div>
       </div>

@@ -9,6 +9,7 @@
 
   > div:first-child {
     .pipeline__branch {
+      cursor: pointer;
       font-weight: 500;
       display: flex;
       align-items: center;
@@ -16,6 +17,10 @@
 
       > svg {
         margin-right: 0.5rem;
+      }
+
+      &:hover {
+        text-decoration: underline;
       }
     }
 
@@ -27,8 +32,11 @@
       font-size: 1.4rem;
       font-weight: 500;
       display: inline-flex;
-
       justify-content: center;
+
+      &:hover {
+        cursor: pointer;
+      }
 
       &--running {
         background-color: var(--tag-gray);

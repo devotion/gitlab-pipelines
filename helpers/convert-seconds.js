@@ -1,6 +1,4 @@
 export default secondsElapsed => {
-  if (secondsElapsed < 60) return secondsElapsed
-
   const createMinutes = () => {
     const minutes = Math.floor(secondsElapsed / 60)
 
