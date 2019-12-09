@@ -5,16 +5,24 @@ import useClickAway from '../hooks/useClickAway'
 
 import './dropdown.scss'
 
-const Dropdown = ({ projects = [], error, dropdownActive, closeDropdown }) => {
+const Dropdown = ({ projects = [], dropdownActive, closeDropdown }) => {
   const dropdownRef = useRef()
+  useClickAway(dropdownRef, closeDropdown)
 
-  if (error) {
-    return <div className="dropdown error">{error}</div>
+  if (projects.error) {
+    return (
+      <ul
+        className={`dropdown ${
+          dropdownActive ? 'dropdown__active' : ''
+        } dropdown__error`}
+        ref={dropdownRef}
+      >
+        <li>{projects.error_description}</li>
+      </ul>
+    )
   }
 
   const { addMyProject } = useContext(MyProjectsContext)
-
-  useClickAway(dropdownRef, closeDropdown)
 
   return (
     <ul

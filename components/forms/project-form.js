@@ -16,7 +16,6 @@ const validationSchema = Yup.object().shape({
 
 const ProjectForm = () => {
   const [projects, setProjects] = useState([])
-  const [projectsError, setProjectsError] = useState('')
   const [dropdownActive, setDropdownActive] = useState(false)
   const [fetchingProjects, setFetchingProjects] = useState(false)
 
@@ -45,10 +44,6 @@ const ProjectForm = () => {
     setProjects(data)
     setFetchingProjects(false)
 
-    if (data.error) {
-      setProjectsError(data.error_description)
-    }
-
     setDropdownActive(true)
   }
   return (
@@ -72,7 +67,6 @@ const ProjectForm = () => {
 
         <Dropdown
           projects={projects}
-          error={projectsError}
           fetchingProjects={fetchingProjects}
           closeDropdown={() => {
             setDropdownActive(false)

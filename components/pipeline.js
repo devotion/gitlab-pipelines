@@ -17,9 +17,9 @@ const Pipeline = ({
 }) => {
   const secondsElapsed = dayjs(updatedAt).diff(dayjs(createdAt), 'seconds')
 
-  const notification = new Notification('Hi there')
+  // const notification = new Notification('Hi there')
 
-  console.log(notification)
+  // console.log(notification)
 
   return (
     <div className="pipeline">

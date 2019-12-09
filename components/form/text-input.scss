@@ -1,6 +1,6 @@
 .text-input {
   display: flex;
-  padding: 0.7rem 0;
+  padding: 0.4rem 0;
   flex-direction: column;
   position: relative;
 
@@ -9,8 +9,9 @@
     background-color: var(--input-bg);
     border: none;
     outline: none;
-    padding: 0.5rem 2rem 0.8rem 1.3rem;
+    padding: 1.4rem 2rem 0.8rem 1.3rem;
     border-radius: 4px;
+
     border: 1px solid transparent;
 
     &:focus {
@@ -26,7 +27,7 @@
       background-color: white;
       top: 0.5rem;
       left: 1rem;
-      font-size: 1rem;
+      font-size: 1.2rem;
       color: var(--placeholder-text);
       z-index: 10;
       background-color: var(--background);
@@ -37,7 +38,7 @@
   .input__placeholder {
     position: absolute;
     left: 1.75rem;
-    top: 48%;
+    top: 50%;
     transform: translateY(-50%);
     color: var(--placeholder-text);
     pointer-events: none;
@@ -47,7 +48,7 @@
   .input__selected {
     padding-left: 0.5rem;
     padding-right: 1rem;
-    font-size: 1rem;
+    font-size: 1.2rem;
     top: 0.5rem;
     left: 1rem;
     z-index: 10;
