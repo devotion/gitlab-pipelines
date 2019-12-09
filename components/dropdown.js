@@ -24,6 +24,19 @@ const Dropdown = ({ projects = [], dropdownActive, closeDropdown }) => {
 
   const { addMyProject } = useContext(MyProjectsContext)
 
+  if (!projects.length) {
+    return (
+      <ul
+        className={`dropdown ${
+          dropdownActive ? 'dropdown__active' : ''
+        } dropdown__no-projects-found`}
+        ref={dropdownRef}
+      >
+        <li>No projects found</li>
+      </ul>
+    )
+  }
+
   return (
     <ul
       className={`dropdown ${dropdownActive ? 'dropdown__active' : ''}`}
