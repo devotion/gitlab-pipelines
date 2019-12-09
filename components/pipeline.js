@@ -1,4 +1,5 @@
 import dayjs from 'dayjs'
+import NotificationsOffIcon from 'react-ionicons/lib/MdNotificationsOff'
 
 import BranchIcon from 'react-ionicons/lib/MdGitBranch'
 import HourglassIcon from 'react-ionicons/lib/MdTimer'
@@ -15,6 +16,10 @@ const Pipeline = ({
   setSingleFilter
 }) => {
   const secondsElapsed = dayjs(updatedAt).diff(dayjs(createdAt), 'seconds')
+
+  const notification = new Notification('Hi there')
+
+  console.log(notification)
 
   return (
     <div className="pipeline">
@@ -50,6 +55,9 @@ const Pipeline = ({
         >
           View on Gitlab
         </a>
+        <div className={`pipeline__notifications-toggle`}>
+          <NotificationsOffIcon />
+        </div>
       </div>
     </div>
   )

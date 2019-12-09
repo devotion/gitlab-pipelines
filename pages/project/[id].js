@@ -23,8 +23,8 @@ const Project = ({ id }) => {
   const router = useRouter()
 
   const [filters, setFilters] = useState({
-    ref: 'develop',
-    status: 'failed'
+    ref: '',
+    status: ''
   })
 
   const setSingleFilter = (name, value) => {
