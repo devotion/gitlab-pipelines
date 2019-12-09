@@ -20,6 +20,8 @@
 
   .project-card__namespace {
     font-size: 1.4rem;
+    font-weight: 300;
+    font-style: italic;
   }
 
   .project-card__delete {
@@ -27,5 +29,6 @@
     outline: none;
     cursor: pointer;
     display: inline-flex;
+    align-self: flex-start;
   }
 }

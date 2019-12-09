@@ -22,7 +22,7 @@ const Dropdown = ({ projects = [], dropdownActive, closeDropdown }) => {
     )
   }
 
-  const { addMyProject } = useContext(MyProjectsContext)
+  const { addMyProject, myProjects } = useContext(MyProjectsContext)
 
   if (!projects.length) {
     return (
@@ -43,6 +43,12 @@ const Dropdown = ({ projects = [], dropdownActive, closeDropdown }) => {
       ref={dropdownRef}
     >
       {projects.map(project => {
+        const isAdded = myProjects.find(
+          myProject => myProject.id === project.id
+        )
+
+        if (isAdded) return null
+
         return (
           <li
             key={project.id}
@@ -55,7 +61,7 @@ const Dropdown = ({ projects = [], dropdownActive, closeDropdown }) => {
               closeDropdown()
             }}
           >
-            {project.name}
+            {project.name} <span>{project.name_with_namespace}</span>
           </li>
         )
       })}
