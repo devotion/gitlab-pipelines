@@ -2,6 +2,7 @@ import { useContext, useRef } from 'react'
 
 import { MyProjectsContext } from '../contexts/my-projects'
 import useClickAway from '../hooks/useClickAway'
+import trimNamespace from '../helpers/trim-namespace'
 
 import './dropdown.scss'
 
@@ -42,26 +43,20 @@ const Dropdown = ({ projects = [], dropdownActive, closeDropdown }) => {
       className={`dropdown ${dropdownActive ? 'dropdown__active' : ''}`}
       ref={dropdownRef}
     >
-      {projects.map(project => {
-        const isAdded = myProjects.find(
-          myProject => myProject.id === project.id
-        )
+      {projects.map(({ id, name, name_with_namespace }) => {
+        const isAdded = myProjects.find(myProject => myProject.id === id)
 
         if (isAdded) return null
 
         return (
           <li
-            key={project.id}
+            key={id}
             onClick={() => {
-              addMyProject(
-                project.id,
-                project.name,
-                project.name_with_namespace
-              )
+              addMyProject(id, name, name_with_namespace)
               closeDropdown()
             }}
           >
-            {project.name} <span>{project.name_with_namespace}</span>
+            {name} <span>{trimNamespace(name_with_namespace)}</span>
           </li>
         )
       })}

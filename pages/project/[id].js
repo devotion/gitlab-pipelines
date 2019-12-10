@@ -1,7 +1,5 @@
 import { useContext, useState } from 'react'
 import CloseIcon from 'react-ionicons/lib/MdClose'
-import ArrowForwardIcon from 'react-ionicons/lib/MdArrowForward'
-import ArrowBackIcon from 'react-ionicons/lib/MdArrowBack'
 
 import Layout from '../../components/layout'
 import { AuthContext } from '../../contexts/auth'
@@ -27,8 +25,7 @@ const Project = ({ id }) => {
   const [filters, setFilters] = useState({
     ref: '',
     status: '',
-    per_page: 8,
-    page: 1
+    per_page: 20
   })
 
   const setSingleFilter = (name, value) => {
@@ -82,26 +79,6 @@ const Project = ({ id }) => {
             />
           )
         })}
-        <div>
-          Page: {filters.page}{' '}
-          <div>
-            <ArrowBackIcon
-              onClick={() => {
-                if (filters.page > 1) {
-                  setSingleFilter('page', filters.page - 1)
-                }
-              }}
-            />
-
-            <ArrowForwardIcon
-              onClick={() => {
-                if (filters.per_page === pipelines.length) {
-                  setSingleFilter('page', filters.page + 1)
-                }
-              }}
-            />
-          </div>
-        </div>
       </div>
     )
   }
@@ -119,7 +96,6 @@ const Project = ({ id }) => {
             {myProjects.length ? getSelectedProject(id, myProjects).name : null}
           </h1>
         </div>
-
         <button onClick={refetchData}>
           <RefreshIcon />
         </button>
