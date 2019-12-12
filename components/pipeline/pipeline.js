@@ -1,18 +1,18 @@
-import { useContext, useEffect, useRef } from 'react'
+import { useContext } from 'react'
 import dayjs from 'dayjs'
 import NotificationsOffIcon from 'react-ionicons/lib/IosNotificationsOffOutline'
 
-import { AuthContext } from '../contexts/auth'
+import { AuthContext } from '../../contexts/auth'
 import BranchIcon from 'react-ionicons/lib/IosGitBranch'
 import StopwatchIcon from 'react-ionicons/lib/IosStopwatchOutline'
 import {
   convertPipelineDuration,
   convertPipelineCreatedAt
-} from '../helpers/date.helpers'
-import { spawnNotification } from '../helpers/notification.helpers'
-import useFetch from '../hooks/useFetch'
-import useTrackPropChange from '../hooks/useTrackPropChange'
-import LoadingSpinner from './loading/loading-spinner'
+} from '../../helpers/date.helpers'
+import { spawnNotification } from '../../helpers/notification.helpers'
+import useFetch from '../../hooks/useFetch'
+import useTrackPropChange from '../../hooks/useTrackPropChange'
+import LoadingSpinner from '../loading/loading-spinner'
 
 import './pipeline.scss'
 

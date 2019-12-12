@@ -5,7 +5,7 @@ import Layout from '../../components/layout'
 import { AuthContext } from '../../contexts/auth'
 import { MyProjectsContext } from '../../contexts/my-projects'
 import LoadingPage from '../../components/loading/loading-page'
-import Pipeline from '../../components/pipeline'
+import Pipeline from '../../components/pipeline/pipeline'
 import useFetch from '../../hooks/useFetch'
 import useInterval from '../../hooks/useInterval'
 import getSelectedProject from '../../helpers/get-selected-project'
@@ -47,7 +47,7 @@ const Project = ({ id }) => {
   const [filters, setFilters] = useState({
     ref: '',
     status: '',
-    per_page: 20,
+    per_page: 5,
     username: ''
   })
 
