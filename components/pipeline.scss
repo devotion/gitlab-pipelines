@@ -1,7 +1,5 @@
 .pipeline {
-  // box-shadow: var(--shadow-1);
   padding: 1.5rem;
-  // border-radius: 10px;
   background-color: var(--background);
   display: flex;
   padding-right: 60%;
@@ -100,6 +98,18 @@
         align-items: center;
         fill: var(--placeholder-text);
       }
+    }
+  }
+
+  .pipeline__loading {
+    padding: 1.5rem;
+    margin-left: 0 !important;
+    display: flex;
+    align-items: center;
+
+    .loading-spinner {
+      width: 1.5rem;
+      height: 1.5rem;
     }
   }
 }

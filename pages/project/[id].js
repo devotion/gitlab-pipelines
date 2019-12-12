@@ -65,17 +65,16 @@ const Project = ({ id }) => {
     return (
       <div className="project">
         {pipelines.map(pipeline => {
-          const { id, status, ref, web_url, updated_at, created_at } = pipeline
+          const { id: pipelineId, status, ref, web_url } = pipeline
           return (
             <Pipeline
-              key={id}
-              id={id}
+              key={pipelineId}
+              id={pipelineId}
               status={status}
               branch={ref}
               gitlabUrl={web_url}
-              updatedAt={updated_at}
-              createdAt={created_at}
               setSingleFilter={setSingleFilter}
+              projectId={id}
             />
           )
         })}
