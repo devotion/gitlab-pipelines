@@ -25,7 +25,8 @@ const Project = ({ id }) => {
   const [filters, setFilters] = useState({
     ref: '',
     status: '',
-    per_page: 20
+    per_page: 10,
+    username: ''
   })
 
   const setSingleFilter = (name, value) => {

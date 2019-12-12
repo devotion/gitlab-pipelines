@@ -1,4 +1,4 @@
-export default secondsElapsed => {
+export const convertPipelineDuration = secondsElapsed => {
   const createMinutes = () => {
     const minutes = Math.floor(secondsElapsed / 60)
 
@@ -19,4 +19,20 @@ export default secondsElapsed => {
   if (secondsElapsed > 3600) return `${Math.floor(secondsElapsed / 3600)} h`
 
   return `${createMinutes()}:${createSeconds()}`
+}
+
+export const convertPipelineCreatedAt = secondsElapsed => {
+  if (secondsElapsed < 60) return `${secondsElapsed}s ago`
+
+  if (secondsElapsed > 604800)
+    return `${Math.floor(secondsElapsed / 604800)} week(s) ago`
+
+  if (secondsElapsed > 86400)
+    return `${Math.floor(secondsElapsed / 86400)} day(s) ago`
+
+  if (secondsElapsed > 3600) return `${Math.floor(secondsElapsed / 3600)}h ago`
+
+  if (secondsElapsed > 60) return `${Math.floor(secondsElapsed / 60)}m ago`
+
+  return 'Long time ago'
 }

@@ -1,14 +1,18 @@
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
+import dayjs from 'dayjs'
 import NotificationsOffIcon from 'react-ionicons/lib/MdNotificationsOff'
 
 import { AuthContext } from '../contexts/auth'
 import BranchIcon from 'react-ionicons/lib/MdGitBranch'
 import HourglassIcon from 'react-ionicons/lib/MdTimer'
-import convertSeconds from '../helpers/convert-seconds'
+import {
+  convertPipelineDuration,
+  convertPipelineCreatedAt
+} from '../helpers/date.helpers'
 import useFetch from '../hooks/useFetch'
+import LoadingSpinner from './loading/loading-spinner'
 
 import './pipeline.scss'
-import LoadingSpinner from './loading/loading-spinner'
 
 const Pipeline = ({
   id,
@@ -34,9 +38,9 @@ const Pipeline = ({
     {}
   )
 
-  const { duration, detailed_status, created_at } = pipelineDetails
+  const { duration, user, detailed_status, created_at } = pipelineDetails
 
-  if (fetchingDetails) {
+  if (fetchingDetails || !user) {
     return (
       <div className="pipeline">
         <div className="pipeline__loading">
@@ -45,6 +49,8 @@ const Pipeline = ({
       </div>
     )
   }
+
+  const createdAtSecondsElapsed = dayjs().diff(created_at, 'second')
 
   return (
     <div className="pipeline">
@@ -64,13 +70,17 @@ const Pipeline = ({
             setSingleFilter('status', status)
           }}
         >
-          {status}
+          <img src={detailed_status.favicon} alt="" align="middle" />
+          {detailed_status.text}
         </div>
       </div>
       <div>
+        <div className="pipeline__started-at">
+          {convertPipelineCreatedAt(createdAtSecondsElapsed)}
+        </div>
         <div className="pipeline__time-elapsed">
           <HourglassIcon />
-          {convertSeconds(duration)}
+          {convertPipelineDuration(duration)}
         </div>
         <a
           href={gitlabUrl}
@@ -82,6 +92,20 @@ const Pipeline = ({
         </a>
         <div className={`pipeline__notifications-toggle`}>
           <NotificationsOffIcon />
+        </div>
+      </div>
+
+      <div className="pipeline__user">
+        <div
+          className="pipeline__user-name"
+          onClick={() => {
+            setSingleFilter('username', user.username)
+          }}
+        >
+          {user.name}
+        </div>
+        <div className="pipeline__user-avatar">
+          <img src={user.avatar_url} alt="user avatar" />
         </div>
       </div>
     </div>
