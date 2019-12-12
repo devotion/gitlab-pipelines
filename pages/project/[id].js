@@ -47,7 +47,7 @@ const Project = ({ id }) => {
   const [filters, setFilters] = useState({
     ref: '',
     status: '',
-    per_page: 1,
+    per_page: 20,
     username: ''
   })
 
