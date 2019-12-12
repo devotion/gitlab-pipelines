@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { useContext, useRef } from 'react'
 
 import { MyProjectsContext } from '../contexts/my-projects'
@@ -9,6 +10,8 @@ import './dropdown.scss'
 const Dropdown = ({ projects = [], dropdownActive, closeDropdown }) => {
   const dropdownRef = useRef()
   useClickAway(dropdownRef, closeDropdown)
+
+  const { addMyProject, myProjects } = useContext(MyProjectsContext)
 
   if (projects.error) {
     return (
@@ -22,8 +25,6 @@ const Dropdown = ({ projects = [], dropdownActive, closeDropdown }) => {
       </ul>
     )
   }
-
-  const { addMyProject, myProjects } = useContext(MyProjectsContext)
 
   if (!projects.length) {
     return (
@@ -62,6 +63,15 @@ const Dropdown = ({ projects = [], dropdownActive, closeDropdown }) => {
       })}
     </ul>
   )
+}
+
+Dropdown.propTypes = {
+  projects: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.object),
+    PropTypes.object
+  ]),
+  dropdownActive: PropTypes.bool,
+  closeDropdown: PropTypes.func
 }
 
 export default Dropdown

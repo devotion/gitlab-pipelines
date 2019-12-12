@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { useContext } from 'react'
 import dayjs from 'dayjs'
 import NotificationsOffIcon from 'react-ionicons/lib/IosNotificationsOffOutline'
@@ -115,6 +116,15 @@ const Pipeline = ({
       </div>
     </div>
   )
+}
+
+Pipeline.propTypes = {
+  id: PropTypes.number,
+  status: PropTypes.string,
+  branch: PropTypes.string,
+  gitlabUrl: PropTypes.string,
+  setSingleFilter: PropTypes.func,
+  projectId: PropTypes.string
 }
 
 export default Pipeline

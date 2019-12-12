@@ -8,5 +8,5 @@ export default (prop, callback) => {
       previousValue.current = prop
       callback()
     }
-  }, [prop])
+  })
 }
