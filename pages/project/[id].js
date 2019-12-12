@@ -1,4 +1,5 @@
-import { useContext, useState, useEffect } from 'react'
+import PropTypes from 'prop-types'
+import { useContext, useState } from 'react'
 import CloseIcon from 'react-ionicons/lib/MdClose'
 
 import Layout from '../../components/layout'
@@ -17,29 +18,29 @@ import './project.scss'
 
 const Project = ({ id }) => {
   const {
-    credentials: { registry, token }
+    credentials: { registry }
   } = useContext(AuthContext)
 
   // REMOVE THIS
-  const [fakeStatus, setFakeStatus] = useState('success')
+  // const [fakeStatus, setFakeStatus] = useState('success')
 
-  useEffect(() => {
-    setTimeout(() => {
-      setFakeStatus('failed')
-    }, 3000)
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setFakeStatus('failed')
+  //   }, 3000)
 
-    setTimeout(() => {
-      setFakeStatus('success')
-    }, 6000)
+  //   setTimeout(() => {
+  //     setFakeStatus('success')
+  //   }, 6000)
 
-    setTimeout(() => {
-      setFakeStatus('running')
-    }, 9000)
+  //   setTimeout(() => {
+  //     setFakeStatus('running')
+  //   }, 9000)
 
-    setTimeout(() => {
-      setFakeStatus('success')
-    }, 12000)
-  }, [])
+  //   setTimeout(() => {
+  //     setFakeStatus('success')
+  //   }, 12000)
+  // }, [])
   // REMOVE THIS
 
   const router = useRouter()
@@ -57,18 +58,12 @@ const Project = ({ id }) => {
 
   const [pipelines, fetchingPipelines, refetchData] = useFetch(
     `${registry}/projects/${id}/pipelines${addQueryParams(filters)}`,
-    {
-      headers: { 'Private-Token': token }
-    },
-    [id, registry, token, filters],
     []
   )
 
   const { myProjects } = useContext(MyProjectsContext)
 
-  if (process.env.NODE_ENV === 'production') {
-    useInterval(refetchData, 10000)
-  }
+  useInterval(refetchData, 10000)
 
   const renderContent = () => {
     if (fetchingPipelines) return <LoadingPage />
@@ -147,6 +142,10 @@ Project.getInitialProps = ({ query }) => {
   const { id } = query
 
   return { id }
+}
+
+Project.propTypes = {
+  id: PropTypes.string
 }
 
 export default Project

@@ -1,9 +1,10 @@
+import PropTypes from 'prop-types'
 import { createContext, useState, useEffect } from 'react'
 import Router from 'next/router'
 
 export const AuthContext = createContext({})
 
-export default ({ children }) => {
+const AuthProvider = ({ children }) => {
   const [credentials, setCredentials] = useState({
     token: '',
     registry: ''
@@ -54,3 +55,9 @@ export default ({ children }) => {
     </AuthContext.Provider>
   )
 }
+
+AuthProvider.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
+}
+
+export default AuthProvider

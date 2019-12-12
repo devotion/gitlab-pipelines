@@ -26,7 +26,7 @@ const Pipeline = ({
   projectId
 }) => {
   const {
-    credentials: { registry, token }
+    credentials: { registry }
   } = useContext(AuthContext)
 
   useTrackPropChange(status, () => {
@@ -36,12 +36,7 @@ const Pipeline = ({
   })
 
   const [pipelineDetails, fetchingDetails] = useFetch(
-    `${registry}/projects/${projectId}/pipelines/${id}`,
-    {
-      headers: { 'Private-Token': token }
-    },
-    [id, registry, token, branch, status],
-    {}
+    `${registry}/projects/${projectId}/pipelines/${id}`
   )
 
   const { duration, user, detailed_status, created_at } = pipelineDetails

@@ -1,9 +1,10 @@
+import PropTypes from 'prop-types'
 import { createContext, useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
 export const MyProjectsContext = createContext({})
 
-export default ({ children }) => {
+const MyProjectsProvider = ({ children }) => {
   const [myProjects, setMyProjects] = useState([])
   const router = useRouter()
 
@@ -47,3 +48,9 @@ export default ({ children }) => {
     </MyProjectsContext.Provider>
   )
 }
+
+MyProjectsProvider.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
+}
+
+export default MyProjectsProvider

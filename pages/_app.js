@@ -1,6 +1,6 @@
 import App from 'next/app'
-import AuthContext from '../contexts/auth'
-import MyProjectsContext from '../contexts/my-projects'
+import AuthProvider from '../contexts/auth'
+import MyProjectsProvider from '../contexts/my-projects'
 import Router from 'next/router'
 
 Router.events.on('routeChangeComplete', () => {
@@ -22,11 +22,11 @@ class MyApp extends App {
     const { Component, pageProps } = this.props
 
     return (
-      <AuthContext>
-        <MyProjectsContext>
+      <AuthProvider>
+        <MyProjectsProvider>
           <Component {...pageProps} />
-        </MyProjectsContext>
-      </AuthContext>
+        </MyProjectsProvider>
+      </AuthProvider>
     )
   }
 }

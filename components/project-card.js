@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import Link from 'next/link'
 import CloseIcon from 'react-ionicons/lib/MdClose'
 import { useContext } from 'react'
@@ -27,6 +28,12 @@ const ProjectCard = ({ id, name, nameWithNamespace }) => {
       </button>
     </div>
   )
+}
+
+ProjectCard.propTypes = {
+  id: PropTypes.number,
+  name: PropTypes.string,
+  nameWithNamespace: PropTypes.string
 }
 
 export default ProjectCard

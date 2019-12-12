@@ -1,8 +1,9 @@
+import PropTypes from 'prop-types'
 import { useField } from 'formik'
 
 import './text-input.scss'
 
-const TextInput = ({ label, placeholder, ...props }) => {
+const TextInput = ({ placeholder, ...props }) => {
   const [field, meta] = useField(props)
 
   const hasValue = Boolean(meta.value)
@@ -23,6 +24,10 @@ const TextInput = ({ label, placeholder, ...props }) => {
       </div>
     </div>
   )
+}
+
+TextInput.propTypes = {
+  placeholder: PropTypes.string
 }
 
 export default TextInput

@@ -1,8 +1,8 @@
 import { useContext } from 'react'
-import ProjectForm from './forms/project-form'
-import MyProjects from './my-projects'
 import Link from 'next/link'
 
+import ProjectForm from './forms/project-form'
+import MyProjects from './my-projects'
 import { AuthContext } from '../contexts/auth'
 
 import './sidebar.scss'
