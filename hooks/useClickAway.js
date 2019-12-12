@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 
-export default (ref, onClickAway) => {
+export default (ref, callback) => {
   const handleClickAway = event => {
     if (ref.current && !ref.current.contains(event.target)) {
-      onClickAway()
+      callback()
     }
   }
 

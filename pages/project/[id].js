@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import CloseIcon from 'react-ionicons/lib/MdClose'
 
 import Layout from '../../components/layout'
@@ -20,12 +20,34 @@ const Project = ({ id }) => {
     credentials: { registry, token }
   } = useContext(AuthContext)
 
+  // REMOVE THIS
+  const [fakeStatus, setFakeStatus] = useState('success')
+
+  useEffect(() => {
+    setTimeout(() => {
+      setFakeStatus('failed')
+    }, 3000)
+
+    setTimeout(() => {
+      setFakeStatus('success')
+    }, 6000)
+
+    setTimeout(() => {
+      setFakeStatus('running')
+    }, 9000)
+
+    setTimeout(() => {
+      setFakeStatus('success')
+    }, 12000)
+  }, [])
+  // REMOVE THIS
+
   const router = useRouter()
 
   const [filters, setFilters] = useState({
     ref: '',
     status: '',
-    per_page: 10,
+    per_page: 1,
     username: ''
   })
 

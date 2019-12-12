@@ -1,15 +1,17 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useRef } from 'react'
 import dayjs from 'dayjs'
-import NotificationsOffIcon from 'react-ionicons/lib/MdNotificationsOff'
+import NotificationsOffIcon from 'react-ionicons/lib/IosNotificationsOffOutline'
 
 import { AuthContext } from '../contexts/auth'
-import BranchIcon from 'react-ionicons/lib/MdGitBranch'
-import HourglassIcon from 'react-ionicons/lib/MdTimer'
+import BranchIcon from 'react-ionicons/lib/IosGitBranch'
+import StopwatchIcon from 'react-ionicons/lib/IosStopwatchOutline'
 import {
   convertPipelineDuration,
   convertPipelineCreatedAt
 } from '../helpers/date.helpers'
+import { spawnNotification } from '../helpers/notification.helpers'
 import useFetch from '../hooks/useFetch'
+import useTrackPropChange from '../hooks/useTrackPropChange'
 import LoadingSpinner from './loading/loading-spinner'
 
 import './pipeline.scss'
@@ -25,11 +27,14 @@ const Pipeline = ({
   const {
     credentials: { registry, token }
   } = useContext(AuthContext)
-  // const notification = new Notification('Hi there')
 
-  // console.log(notification)
+  useTrackPropChange(status, () => {
+    if (status === 'success' || status === 'failed') {
+      spawnNotification(status, branch)
+    }
+  })
 
-  const [pipelineDetails, fetchingDetails, refetchDetails] = useFetch(
+  const [pipelineDetails, fetchingDetails] = useFetch(
     `${registry}/projects/${projectId}/pipelines/${id}`,
     {
       headers: { 'Private-Token': token }
@@ -79,7 +84,7 @@ const Pipeline = ({
           {convertPipelineCreatedAt(createdAtSecondsElapsed)}
         </div>
         <div className="pipeline__time-elapsed">
-          <HourglassIcon />
+          <StopwatchIcon />
           {convertPipelineDuration(duration)}
         </div>
         <a

@@ -8,13 +8,15 @@
   }
 
   > div:first-child {
+    width: 40rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     .pipeline__branch {
       cursor: pointer;
       font-weight: 500;
-      display: flex;
+      display: inline-flex;
       align-items: center;
-
-      width: 40rem;
 
       > svg {
         margin-right: 0.5rem;
@@ -26,7 +28,7 @@
     }
 
     .pipeline__status {
-      padding: 0.2rem 1rem;
+      padding: 0.1rem 1rem;
 
       text-align: center;
       border-radius: 4px;
@@ -54,11 +56,11 @@
       }
 
       &--running {
-        background-color: var(--tag-gray);
+        background-color: var(--tag-blue);
       }
 
       &--pending {
-        background-color: var(--tag-gray);
+        background-color: var(--tag-orange);
       }
 
       &--success {
@@ -84,7 +86,6 @@
     width: 30rem;
     justify-content: flex-end;
 
-    // margin-left: auto;
     align-items: center;
 
     .pipeline__time-elapsed {
@@ -95,6 +96,7 @@
       > svg {
         width: 1.6rem;
         margin-right: 0.2rem;
+        fill: #707070;
       }
     }
 
@@ -120,7 +122,15 @@
 
   .pipeline__started-at {
     font-size: 1.3rem;
+    display: flex;
+    align-items: center;
     margin-right: 2rem;
+
+    > svg {
+      width: 1.6rem;
+      margin-right: 0.2rem;
+      fill: #707070;
+    }
   }
 
   .pipeline__user {
@@ -129,6 +139,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+
     .pipeline__user-name {
       font-size: 1.3rem;
       margin-right: 1rem;
