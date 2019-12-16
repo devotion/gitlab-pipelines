@@ -5,7 +5,7 @@ import ProjectCard from './project-card'
 
 import './my-projects.scss'
 
-const MyProjects = () => {
+function MyProjects() {
   const { myProjects } = useContext(MyProjectsContext)
 
   if (myProjects.length === 0) return null

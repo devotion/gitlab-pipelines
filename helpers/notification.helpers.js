@@ -1,17 +1,18 @@
-export const spawnNotification = (status, branch) => {
+export function spawnNotification(status, branch) {
   const permission = Notification.permission
 
   if (permission === 'default') {
     Notification.requestPermission()
   }
 
-  const title = `Pipeline on branch ${branch} has ${
+  const body = `Pipeline on branch ${branch} has ${
     status === 'success' ? 'passed' : 'failed'
   }`
+  const title = `Pipeline status changed`
 
   const options = {
     silent: true,
-    icon: 'https://about.gitlab.com/images/new_logo/C.jpg'
+    body
   }
 
   new Notification(title, options)

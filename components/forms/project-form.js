@@ -14,7 +14,7 @@ const validationSchema = Yup.object().shape({
   project: Yup.string()
 })
 
-const ProjectForm = () => {
+function ProjectForm() {
   const [projects, setProjects] = useState([])
   const [dropdownActive, setDropdownActive] = useState(false)
   const [fetchingProjects, setFetchingProjects] = useState(false)
@@ -23,7 +23,7 @@ const ProjectForm = () => {
     credentials: { token, registry }
   } = useContext(AuthContext)
 
-  const onSubmit = async values => {
+  async function onSubmit(values) {
     if (!values.project) {
       setDropdownActive(false)
       return
@@ -43,9 +43,9 @@ const ProjectForm = () => {
 
     setProjects(data)
     setFetchingProjects(false)
-
     setDropdownActive(true)
   }
+
   return (
     <Formik
       onSubmit={onSubmit}

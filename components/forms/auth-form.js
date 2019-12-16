@@ -14,9 +14,10 @@ const validationSchema = Yup.object().shape({
   token: Yup.string().required('Required')
 })
 
-const AuthForm = () => {
+function AuthForm() {
   const { login } = useContext(AuthContext)
-  const onSubmit = values => {
+
+  function onSubmit(values) {
     login(values.token, values.registry)
   }
 

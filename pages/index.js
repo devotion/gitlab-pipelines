@@ -7,7 +7,7 @@ import { AuthContext } from '../contexts/auth'
 
 import './index.scss'
 
-const Home = () => {
+function Home() {
   const {
     credentials: { token }
   } = useContext(AuthContext)

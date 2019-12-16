@@ -5,7 +5,7 @@ import Sidebar from './sidebar'
 
 import './layout.scss'
 
-const Layout = ({ title, children, showSidebar = true }) => {
+function Layout({ title, children, showSidebar = true }) {
   return (
     <div className="layout">
       <Head>

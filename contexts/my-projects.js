@@ -4,11 +4,11 @@ import { useRouter } from 'next/router'
 
 export const MyProjectsContext = createContext({})
 
-const MyProjectsProvider = ({ children }) => {
+function MyProjectsProvider({ children }) {
   const [myProjects, setMyProjects] = useState([])
   const router = useRouter()
 
-  const addMyProject = (id, name, nameWithNamespace) => {
+  function addMyProject(id, name, nameWithNamespace) {
     const isDuplicateProject = !!myProjects.find(project => {
       return project.id === id
     })
@@ -21,7 +21,7 @@ const MyProjectsProvider = ({ children }) => {
     }
   }
 
-  const deleteMyProject = id => {
+  function deleteMyProject(id) {
     const projects = myProjects.filter(project => project.id !== id)
 
     if (!projects.length) router.push('/')

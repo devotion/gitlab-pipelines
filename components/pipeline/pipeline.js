@@ -1,43 +1,58 @@
 import PropTypes from 'prop-types'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import dayjs from 'dayjs'
-import NotificationsOffIcon from 'react-ionicons/lib/IosNotificationsOffOutline'
+import NotificationsOffIcon from 'react-ionicons/lib/IosNotificationsOff'
+import NotificationsOnIcon from 'react-ionicons/lib/IosNotifications'
+import { spawnNotification } from '../../helpers/notification.helpers'
 
 import { AuthContext } from '../../contexts/auth'
+import { NotificationsContext } from '../../contexts/notifications'
 import BranchIcon from 'react-ionicons/lib/IosGitBranch'
 import StopwatchIcon from 'react-ionicons/lib/IosStopwatchOutline'
 import {
   convertPipelineDuration,
   convertPipelineCreatedAt
 } from '../../helpers/date.helpers'
-import { spawnNotification } from '../../helpers/notification.helpers'
 import useFetch from '../../hooks/useFetch'
-import useTrackPropChange from '../../hooks/useTrackPropChange'
 import LoadingSpinner from '../loading/loading-spinner'
 
 import './pipeline.scss'
 
-const Pipeline = ({
+function Pipeline({
   id,
   status,
   branch,
   gitlabUrl,
   setSingleFilter,
   projectId
-}) => {
+}) {
   const {
     credentials: { registry }
   } = useContext(AuthContext)
 
-  useTrackPropChange(status, () => {
-    if (status === 'success' || status === 'failed') {
-      spawnNotification(status, branch)
-    }
-  })
+  const {
+    trackPipeline,
+    untrackPipeline,
+    isNotification,
+    recordPreviousValue,
+    getPreviousValue
+  } = useContext(NotificationsContext)
 
   const [pipelineDetails, fetchingDetails] = useFetch(
     `${registry}/projects/${projectId}/pipelines/${id}`
   )
+
+  useEffect(() => {
+    if (!getPreviousValue(id)) {
+      recordPreviousValue(id, status)
+      return
+    }
+
+    if (getPreviousValue(id) !== status) {
+      spawnNotification(status, branch)
+      recordPreviousValue(id, status)
+    }
+  }, [])
 
   const { duration, user, detailed_status, created_at } = pipelineDetails
 
@@ -92,7 +107,20 @@ const Pipeline = ({
           View on Gitlab
         </a>
         <div className={`pipeline__notifications-toggle`}>
-          <NotificationsOffIcon />
+          {isNotification(id) ? (
+            <NotificationsOnIcon
+              onClick={() => {
+                untrackPipeline(id)
+              }}
+            />
+          ) : (
+            <NotificationsOffIcon
+              onClick={() => {
+                trackPipeline(id)
+                recordPreviousValue(id, status)
+              }}
+            />
+          )}
         </div>
       </div>
 

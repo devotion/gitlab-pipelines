@@ -3,11 +3,11 @@ import { useContext, useRef } from 'react'
 
 import { MyProjectsContext } from '../contexts/my-projects'
 import useClickAway from '../hooks/useClickAway'
-import trimNamespace from '../helpers/trim-namespace'
+import { trimNamespace } from '../helpers/string.helpers'
 
 import './dropdown.scss'
 
-const Dropdown = ({ projects = [], dropdownActive, closeDropdown }) => {
+function Dropdown({ projects = [], dropdownActive, closeDropdown }) {
   const dropdownRef = useRef()
   useClickAway(dropdownRef, closeDropdown)
 

@@ -4,7 +4,7 @@ import Router from 'next/router'
 
 export const AuthContext = createContext({})
 
-const AuthProvider = ({ children }) => {
+function AuthProvider({ children }) {
   const [credentials, setCredentials] = useState({
     token: '',
     registry: ''
@@ -19,7 +19,7 @@ const AuthProvider = ({ children }) => {
     }
   }, [])
 
-  const login = (token, registry) => {
+  function login(token, registry) {
     localStorage.setItem('gitlab-token', token)
     localStorage.setItem('gitlab-registry', registry)
 
@@ -31,7 +31,7 @@ const AuthProvider = ({ children }) => {
     Router.push('/')
   }
 
-  const logout = () => {
+  function logout() {
     localStorage.removeItem('gitlab-token')
     localStorage.removeItem('gitlab-registry')
 

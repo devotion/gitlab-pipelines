@@ -3,11 +3,12 @@ import Link from 'next/link'
 import CloseIcon from 'react-ionicons/lib/MdClose'
 import { useContext } from 'react'
 import { MyProjectsContext } from '../contexts/my-projects'
-import trimNamespace from '../helpers/trim-namespace'
+import { trimNamespace } from '../helpers/string.helpers'
 import './project-card.scss'
 
-const ProjectCard = ({ id, name, nameWithNamespace }) => {
+function ProjectCard({ id, name, nameWithNamespace }) {
   const { deleteMyProject } = useContext(MyProjectsContext)
+
   return (
     <div className="project-card">
       <div>

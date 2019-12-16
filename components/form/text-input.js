@@ -3,7 +3,7 @@ import { useField } from 'formik'
 
 import './text-input.scss'
 
-const TextInput = ({ placeholder, ...props }) => {
+function TextInput({ placeholder, ...props }) {
   const [field, meta] = useField(props)
 
   const hasValue = Boolean(meta.value)

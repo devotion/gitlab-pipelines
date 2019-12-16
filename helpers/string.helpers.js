@@ -1,5 +1,5 @@
-export default namespace =>
-  namespace
+export function trimNamespace(namespace) {
+  return namespace
     .split(' / ')
     .filter((el, i, arr) => i !== arr.length - 1)
     .map((el, i, arr) => {
@@ -7,3 +7,4 @@ export default namespace =>
       return `${el} / `
     })
     .join('')
+}

@@ -1,4 +1,4 @@
-export const convertPipelineDuration = secondsElapsed => {
+export function convertPipelineDuration(secondsElapsed) {
   const createMinutes = () => {
     const minutes = Math.floor(secondsElapsed / 60)
 
@@ -21,7 +21,7 @@ export const convertPipelineDuration = secondsElapsed => {
   return `${createMinutes()}:${createSeconds()}`
 }
 
-export const convertPipelineCreatedAt = secondsElapsed => {
+export function convertPipelineCreatedAt(secondsElapsed) {
   if (secondsElapsed < 60) return `${secondsElapsed}s ago`
 
   if (secondsElapsed > 604800)

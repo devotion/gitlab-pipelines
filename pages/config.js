@@ -6,7 +6,7 @@ import { AuthContext } from '../contexts/auth'
 
 import './config.scss'
 
-const Config = () => {
+function Config() {
   const {
     credentials: { token, registry }
   } = useContext(AuthContext)

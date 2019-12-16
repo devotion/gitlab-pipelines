@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-export default (ref, callback) => {
+function useClickAway(ref, callback) {
   useEffect(() => {
     const handleClickAway = event => {
       if (ref.current && !ref.current.contains(event.target)) {
@@ -15,3 +15,5 @@ export default (ref, callback) => {
     }
   }, [callback, ref])
 }
+
+export default useClickAway

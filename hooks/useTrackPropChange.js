@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react'
 
-export default (prop, callback) => {
+function useTrackPropChange(prop, callback) {
   const previousValue = useRef(prop)
 
   useEffect(() => {
@@ -10,3 +10,5 @@ export default (prop, callback) => {
     }
   })
 }
+
+export default useTrackPropChange

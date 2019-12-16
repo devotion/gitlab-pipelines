@@ -7,8 +7,9 @@ import { AuthContext } from '../contexts/auth'
 
 import './sidebar.scss'
 
-const Sidebar = () => {
+function Sidebar() {
   const { logout } = useContext(AuthContext)
+
   return (
     <div className="sidebar">
       <Link href="/">

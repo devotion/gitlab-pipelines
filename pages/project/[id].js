@@ -9,37 +9,36 @@ import LoadingPage from '../../components/loading/loading-page'
 import Pipeline from '../../components/pipeline/pipeline'
 import useFetch from '../../hooks/useFetch'
 import useInterval from '../../hooks/useInterval'
-import getSelectedProject from '../../helpers/get-selected-project'
+import {
+  getSelectedProject,
+  addQueryParams
+} from '../../helpers/general.helpers'
 import RefreshIcon from 'react-ionicons/lib/MdRefresh'
 import { useRouter } from 'next/router'
-import addQueryParams from '../../helpers/add-query-params'
 
 import './project.scss'
 
-const Project = ({ id }) => {
+function Project({ id }) {
   const {
     credentials: { registry }
   } = useContext(AuthContext)
 
-  // REMOVE THIS
+  // REMOVE THIS - use to fake stuff for notifications
   // const [fakeStatus, setFakeStatus] = useState('success')
+  // const [fakeLoading, setFakeLoading] = useState(false)
 
   // useEffect(() => {
   //   setTimeout(() => {
+  //     setFakeLoading(true)
   //     setFakeStatus('failed')
+  //     setFakeLoading(false)
   //   }, 3000)
 
   //   setTimeout(() => {
+  //     setFakeLoading(true)
   //     setFakeStatus('success')
+  //     setFakeLoading(false)
   //   }, 6000)
-
-  //   setTimeout(() => {
-  //     setFakeStatus('running')
-  //   }, 9000)
-
-  //   setTimeout(() => {
-  //     setFakeStatus('success')
-  //   }, 12000)
   // }, [])
   // REMOVE THIS
 
