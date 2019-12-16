@@ -1,7 +1,5 @@
 export function spawnNotification(status, branch) {
-  const permission = Notification.permission
-
-  if (permission === 'default') {
+  if (Notification.permission === 'default') {
     Notification.requestPermission()
   }
 

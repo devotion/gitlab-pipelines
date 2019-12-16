@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types'
 import { useContext, useEffect } from 'react'
 import dayjs from 'dayjs'
-import NotificationsOffIcon from 'react-ionicons/lib/IosNotificationsOff'
-import NotificationsOnIcon from 'react-ionicons/lib/IosNotifications'
+import NotificationsOffIcon from 'react-ionicons/lib/IosNotificationsOffOutline'
+import NotificationsOnIcon from 'react-ionicons/lib/IosNotificationsOutline'
 import { spawnNotification } from '../../helpers/notification.helpers'
 
 import { AuthContext } from '../../contexts/auth'
@@ -34,8 +34,8 @@ function Pipeline({
     trackPipeline,
     untrackPipeline,
     isNotification,
-    recordPreviousValue,
-    getPreviousValue
+    saveCurrentStatus,
+    getCurrentStatus
   } = useContext(NotificationsContext)
 
   const [pipelineDetails, fetchingDetails] = useFetch(
@@ -44,16 +44,19 @@ function Pipeline({
 
   useEffect(() => {
     if (!isNotification(id)) return
-    if (!getPreviousValue(id)) {
-      recordPreviousValue(id, status)
+
+    if (!getCurrentStatus(id)) {
+      saveCurrentStatus(id, status)
       return
     }
 
-    if (getPreviousValue(id) !== status) {
-      spawnNotification(status, branch)
-      recordPreviousValue(id, status)
+    if (getCurrentStatus(id) !== status) {
+      if (status === 'sucess' || status === 'failed') {
+        spawnNotification(status, branch)
+      }
+      saveCurrentStatus(id, status)
     }
-  }, [])
+  })
 
   const { duration, user, detailed_status, created_at } = pipelineDetails
 
@@ -118,7 +121,7 @@ function Pipeline({
             <NotificationsOffIcon
               onClick={() => {
                 trackPipeline(id)
-                recordPreviousValue(id, status)
+                saveCurrentStatus(id, status)
               }}
             />
           )}

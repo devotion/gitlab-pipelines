@@ -27,7 +27,7 @@ function Project({ id }) {
   // const [fakeStatus, setFakeStatus] = useState('success')
   // const [fakeLoading, setFakeLoading] = useState(false)
 
-  // useEffect(() => {
+  // React.useEffect(() => {
   //   setTimeout(() => {
   //     setFakeLoading(true)
   //     setFakeStatus('failed')

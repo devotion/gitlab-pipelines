@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import { createContext, useReducer } from 'react'
+
 import { removeObjectPropertyByKey } from '../helpers/general.helpers'
 
 export const NotificationsContext = createContext({})
@@ -13,12 +14,12 @@ function notificationsReducer(state, action) {
       }
     case 'UNTRACK_PIPELINE':
       return removeObjectPropertyByKey(state, action.payload.id)
-    case 'RECORD_PREVIOUS_VALUE':
+    case 'SAVE_CURRENT_STATUS':
       return {
         ...state,
         [action.payload.id]: {
           id: action.payload.id,
-          previousValue: action.payload.previousValue
+          currentStatus: action.payload.currentStatus
         }
       }
     default:
@@ -47,19 +48,19 @@ function NotificationsProvider({ children }) {
     })
   }
 
-  function recordPreviousValue(id, previousValue) {
+  function saveCurrentStatus(id, currentStatus) {
     dispatch({
-      type: 'RECORD_PREVIOUS_VALUE',
+      type: 'SAVE_CURRENT_STATUS',
       payload: {
         id,
-        previousValue
+        currentStatus
       }
     })
   }
 
-  function getPreviousValue(id) {
+  function getCurrentStatus(id) {
     if (!notifications[id]) return null
-    return notifications[id].previousValue
+    return notifications[id].currentStatus
   }
 
   function isNotification(id) {
@@ -73,8 +74,8 @@ function NotificationsProvider({ children }) {
         trackPipeline,
         untrackPipeline,
         isNotification,
-        recordPreviousValue,
-        getPreviousValue
+        saveCurrentStatus,
+        getCurrentStatus
       }}
     >
       {children}

@@ -16,6 +16,10 @@ function Home() {
     if (!token) {
       Router.push('/config')
     }
+
+    if (Notification.permission === 'default') {
+      Notification.requestPermission()
+    }
   }, [token])
 
   if (!token) {
