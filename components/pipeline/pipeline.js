@@ -43,6 +43,7 @@ function Pipeline({
   )
 
   useEffect(() => {
+    if (!isNotification(id)) return
     if (!getPreviousValue(id)) {
       recordPreviousValue(id, status)
       return
