@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback, useContext } from 'react'
 import fetch from 'isomorphic-unfetch'
-import useWhyDidYouUpdate from './useWhyDidYouUpdate'
 
 import { AuthContext } from '../contexts/auth'
 
@@ -29,8 +28,6 @@ function useFetch(endpoint, trackingArray = []) {
   useEffect(() => {
     fetchData()
   }, trackingArray)
-
-  useWhyDidYouUpdate('useFetch', { endpoint, token, fetchData })
 
   return [data, fetching, fetchData]
 }

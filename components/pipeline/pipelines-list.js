@@ -6,10 +6,6 @@ import Pipeline from '../../components/pipeline/pipeline'
 import './pipelines-list.scss'
 
 function PipelinesList({ pipelines, setSingleFilter, projectId }) {
-  // useWhyDidYouUpdate('Project', {
-  //   pipelines
-  // })
-
   if (pipelines.error) {
     const errorMessage =
       pipelines.error_description || pipelines.error || 'There was an error'

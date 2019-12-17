@@ -14,7 +14,6 @@ import {
   convertPipelineCreatedAt
 } from '../../helpers/date.helpers'
 import useFetch from '../../hooks/useFetch'
-import useWhyDidYouUpdate from '../../hooks/useWhyDidYouUpdate'
 
 import LoadingSpinner from '../loading/loading-spinner'
 
@@ -28,14 +27,6 @@ function Pipeline({
   setSingleFilter,
   projectId
 }) {
-  useWhyDidYouUpdate('Pipeline', {
-    id,
-    status,
-    branch,
-    gitlabUrl,
-    setSingleFilter,
-    projectId
-  })
   const {
     credentials: { registry }
   } = useContext(AuthContext)
