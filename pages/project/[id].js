@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import { useContext, useState, useCallback } from 'react'
 import CloseIcon from 'react-ionicons/lib/MdClose'
 
@@ -10,7 +9,6 @@ import PipelinesList from '../../components/pipeline/pipelines-list'
 import useFetch from '../../hooks/useFetch'
 // import useInterval from '../../hooks/useInterval'
 
-import useWhyDidYouUpdate from '../../hooks/useWhyDidYouUpdate'
 import {
   getSelectedProject,
   addQueryParams
@@ -20,7 +18,7 @@ import { useRouter } from 'next/router'
 
 import './project.scss'
 
-function Project({ id }) {
+function Project() {
   const {
     credentials: { registry }
   } = useContext(AuthContext)
@@ -45,13 +43,23 @@ function Project({ id }) {
   // REMOVE THIS
 
   const router = useRouter()
+  const { id } = router.query
 
   const [filters, setFilters] = useState({
     ref: '',
     status: '',
-    per_page: 1,
+    per_page: 5,
     username: ''
   })
+
+  const [
+    pipelines,
+    fetchingPipelines,
+    refetchData
+  ] = useFetch(
+    `${registry}/projects/${id}/pipelines${addQueryParams(filters)}`,
+    [id, registry, filters]
+  )
 
   const setSingleFilter = useCallback(
     (name, value) => {
@@ -60,20 +68,7 @@ function Project({ id }) {
     [filters]
   )
 
-  const [pipelines, fetchingPipelines, refetchData] = useFetch(
-    `${registry}/projects/${id}/pipelines${addQueryParams(filters)}`
-  )
-
   const { myProjects } = useContext(MyProjectsContext)
-
-  useWhyDidYouUpdate('Project', {
-    id,
-    pipelines,
-    fetchingPipelines,
-    setSingleFilter,
-    filters,
-    router
-  })
 
   // useInterval(refetchData, 10000)
 
@@ -121,16 +116,6 @@ function Project({ id }) {
       )}
     </Layout>
   )
-}
-
-Project.getInitialProps = ({ query }) => {
-  const { id } = query
-
-  return { id }
-}
-
-Project.propTypes = {
-  id: PropTypes.string
 }
 
 export default Project

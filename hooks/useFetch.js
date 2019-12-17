@@ -4,7 +4,7 @@ import useWhyDidYouUpdate from './useWhyDidYouUpdate'
 
 import { AuthContext } from '../contexts/auth'
 
-function useFetch(endpoint) {
+function useFetch(endpoint, trackingArray = []) {
   const [data, setData] = useState({})
   const [fetching, setFetching] = useState(false)
 
@@ -28,7 +28,7 @@ function useFetch(endpoint) {
 
   useEffect(() => {
     fetchData()
-  }, [fetchData, endpoint])
+  }, trackingArray)
 
   useWhyDidYouUpdate('useFetch', { endpoint, token, fetchData })
 
