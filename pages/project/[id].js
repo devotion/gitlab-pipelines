@@ -1,14 +1,14 @@
-import PropTypes from 'prop-types'
-import { useContext, useState } from 'react'
+import { useContext, useState, useCallback } from 'react'
 import CloseIcon from 'react-ionicons/lib/MdClose'
 
 import Layout from '../../components/layout'
 import { AuthContext } from '../../contexts/auth'
 import { MyProjectsContext } from '../../contexts/my-projects'
 import LoadingPage from '../../components/loading/loading-page'
-import Pipeline from '../../components/pipeline/pipeline'
+import PipelinesList from '../../components/pipeline/pipelines-list'
 import useFetch from '../../hooks/useFetch'
-import useInterval from '../../hooks/useInterval'
+// import useInterval from '../../hooks/useInterval'
+
 import {
   getSelectedProject,
   addQueryParams
@@ -18,7 +18,7 @@ import { useRouter } from 'next/router'
 
 import './project.scss'
 
-function Project({ id }) {
+function Project() {
   const {
     credentials: { registry }
   } = useContext(AuthContext)
@@ -43,61 +43,34 @@ function Project({ id }) {
   // REMOVE THIS
 
   const router = useRouter()
+  const { id } = router.query
 
   const [filters, setFilters] = useState({
     ref: '',
     status: '',
-    per_page: 20,
+    per_page: 5,
     username: ''
   })
 
-  const setSingleFilter = (name, value) => {
-    setFilters({ ...filters, [name]: value })
-  }
-
-  const [pipelines, fetchingPipelines, refetchData] = useFetch(
+  const [
+    pipelines,
+    fetchingPipelines,
+    refetchData
+  ] = useFetch(
     `${registry}/projects/${id}/pipelines${addQueryParams(filters)}`,
-    []
+    [id, registry, filters]
+  )
+
+  const setSingleFilter = useCallback(
+    (name, value) => {
+      setFilters({ ...filters, [name]: value })
+    },
+    [filters]
   )
 
   const { myProjects } = useContext(MyProjectsContext)
 
-  useInterval(refetchData, 10000)
-
-  const renderContent = () => {
-    if (fetchingPipelines) return <LoadingPage />
-
-    if (pipelines.error) {
-      const errorMessage =
-        pipelines.error_description || pipelines.error || 'There was an error'
-      return (
-        <div className="project__error">
-          <h3>{errorMessage}</h3>
-        </div>
-      )
-    }
-
-    if (!pipelines.length) return null
-
-    return (
-      <div className="project">
-        {pipelines.map(pipeline => {
-          const { id: pipelineId, status, ref, web_url } = pipeline
-          return (
-            <Pipeline
-              key={pipelineId}
-              id={pipelineId}
-              status={status}
-              branch={ref}
-              gitlabUrl={web_url}
-              setSingleFilter={setSingleFilter}
-              projectId={id}
-            />
-          )
-        })}
-      </div>
-    )
-  }
+  // useInterval(refetchData, 10000)
 
   if (myProjects.length && !getSelectedProject(id, myProjects)) {
     router.push('/')
@@ -132,19 +105,17 @@ function Project({ id }) {
           )
         })}
       </div>
-      {renderContent()}
+      {fetchingPipelines ? (
+        <LoadingPage />
+      ) : (
+        <PipelinesList
+          pipelines={pipelines}
+          projectId={id}
+          setSingleFilter={setSingleFilter}
+        />
+      )}
     </Layout>
   )
-}
-
-Project.getInitialProps = ({ query }) => {
-  const { id } = query
-
-  return { id }
-}
-
-Project.propTypes = {
-  id: PropTypes.string
 }
 
 export default Project

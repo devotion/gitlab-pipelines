@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import { useContext, useEffect } from 'react'
 import dayjs from 'dayjs'
 import NotificationsOffIcon from 'react-ionicons/lib/IosNotificationsOffOutline'
-import NotificationsOnIcon from 'react-ionicons/lib/IosNotificationsOutline'
+import NotificationsOnIcon from 'react-ionicons/lib/IosNotifications'
 import { spawnNotification } from '../../helpers/notification.helpers'
 
 import { AuthContext } from '../../contexts/auth'
@@ -14,6 +14,8 @@ import {
   convertPipelineCreatedAt
 } from '../../helpers/date.helpers'
 import useFetch from '../../hooks/useFetch'
+import useWhyDidYouUpdate from '../../hooks/useWhyDidYouUpdate'
+
 import LoadingSpinner from '../loading/loading-spinner'
 
 import './pipeline.scss'
@@ -26,6 +28,14 @@ function Pipeline({
   setSingleFilter,
   projectId
 }) {
+  useWhyDidYouUpdate('Pipeline', {
+    id,
+    status,
+    branch,
+    gitlabUrl,
+    setSingleFilter,
+    projectId
+  })
   const {
     credentials: { registry }
   } = useContext(AuthContext)
