@@ -14,7 +14,7 @@ function Home() {
 
   useEffect(() => {
     if (!token) {
-      Router.push('/config')
+      Router.push('/login')
     }
 
     if (Notification.permission === 'default') {

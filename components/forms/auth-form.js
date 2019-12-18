@@ -30,7 +30,7 @@ function AuthForm() {
       }}
       validationSchema={validationSchema}
     >
-      <Form className="config-form" autoComplete="off">
+      <Form className="login-form" autoComplete="off">
         <TextInput placeholder="Registry name" id="registry" name="registry" />
         <TextInput placeholder="Token" id="token" name="token" />
 

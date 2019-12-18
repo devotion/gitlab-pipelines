@@ -4,9 +4,9 @@ import Router from 'next/router'
 import AuthForm from '../components/forms/auth-form'
 import { AuthContext } from '../contexts/auth'
 
-import './config.scss'
+import './login.scss'
 
-function Config() {
+function Login() {
   const {
     credentials: { token, registry }
   } = useContext(AuthContext)
@@ -16,7 +16,7 @@ function Config() {
   }
 
   return (
-    <div className="config">
+    <div className="login">
       <h1>Welcome to Gitlab Pipelines</h1>
       <AuthForm />
       <p>
@@ -27,4 +27,4 @@ function Config() {
   )
 }
 
-export default Config
+export default Login

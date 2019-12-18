@@ -34,7 +34,7 @@ function AuthProvider({ children }) {
     localStorage.removeItem('gitlab-token')
     localStorage.removeItem('gitlab-registry')
 
-    Router.push('/config')
+    Router.push('/login')
 
     setCredentials({
       token: '',
