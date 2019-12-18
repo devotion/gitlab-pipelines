@@ -52,7 +52,7 @@ function Pipeline({
     }
 
     if (getCurrentStatus(id) !== status) {
-      if (status === 'sucess' || status === 'failed') {
+      if (status === 'success' || status === 'failed') {
         spawnNotification(status, branch)
       }
       saveCurrentStatus(id, status)
