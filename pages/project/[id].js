@@ -7,7 +7,7 @@ import { MyProjectsContext } from '../../contexts/my-projects'
 import LoadingPage from '../../components/loading/loading-page'
 import PipelinesList from '../../components/pipeline/pipelines-list'
 import useFetch from '../../hooks/useFetch'
-// import useInterval from '../../hooks/useInterval'
+import useInterval from '../../hooks/useInterval'
 
 import {
   getSelectedProject,
@@ -48,17 +48,14 @@ function Project() {
   const [filters, setFilters] = useState({
     ref: '',
     status: '',
-    per_page: 5,
+    per_page: 20,
     username: ''
   })
 
-  const [
-    pipelines,
-    fetchingPipelines,
-    refetchData
-  ] = useFetch(
+  const [pipelines, fetchingPipelines, refetchData] = useFetch(
     `${registry}/projects/${id}/pipelines${addQueryParams(filters)}`,
-    [id, registry, filters]
+    [id, registry, filters],
+    []
   )
 
   const setSingleFilter = useCallback(
@@ -70,7 +67,7 @@ function Project() {
 
   const { myProjects } = useContext(MyProjectsContext)
 
-  // useInterval(refetchData, 10000)
+  useInterval(refetchData, 10000)
 
   if (myProjects.length && !getSelectedProject(id, myProjects)) {
     router.push('/')

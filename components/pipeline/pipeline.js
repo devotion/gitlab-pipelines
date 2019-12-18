@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, memo } from 'react'
 import dayjs from 'dayjs'
 import NotificationsOffIcon from 'react-ionicons/lib/IosNotificationsOffOutline'
 import NotificationsOnIcon from 'react-ionicons/lib/IosNotifications'
@@ -155,4 +155,4 @@ Pipeline.propTypes = {
   projectId: PropTypes.string
 }
 
-export default Pipeline
+export default memo(Pipeline)

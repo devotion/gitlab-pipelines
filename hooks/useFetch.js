@@ -3,8 +3,8 @@ import fetch from 'isomorphic-unfetch'
 
 import { AuthContext } from '../contexts/auth'
 
-function useFetch(endpoint, trackingArray = []) {
-  const [data, setData] = useState({})
+function useFetch(endpoint, dependencies = [], defaultData = {}) {
+  const [data, setData] = useState(defaultData)
   const [fetching, setFetching] = useState(false)
 
   const {
@@ -26,8 +26,11 @@ function useFetch(endpoint, trackingArray = []) {
   }, [endpoint, token])
 
   useEffect(() => {
-    fetchData()
-  }, trackingArray)
+    if (dependencies && Array.isArray(dependencies)) {
+      fetchData()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, dependencies)
 
   return [data, fetching, fetchData]
 }
