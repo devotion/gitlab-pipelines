@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import { createContext, useReducer } from 'react'
 
 import { removeObjectPropertyByKey } from '../helpers/general.helpers'
@@ -81,10 +80,6 @@ function NotificationsProvider({ children }) {
       {children}
     </NotificationsContext.Provider>
   )
-}
-
-NotificationsProvider.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
 }
 
 export default NotificationsProvider

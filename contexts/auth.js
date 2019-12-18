@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import { createContext, useState, useEffect } from 'react'
 import Router from 'next/router'
 
@@ -54,10 +53,6 @@ function AuthProvider({ children }) {
       {children}
     </AuthContext.Provider>
   )
-}
-
-AuthProvider.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
 }
 
 export default AuthProvider

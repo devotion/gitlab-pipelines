@@ -20,7 +20,6 @@ function Layout({ title, children, showSidebar = true }) {
 Layout.propTypes = {
   title: PropTypes.string,
   showSidebar: PropTypes.bool,
-  children: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
 }
 
 export default Layout
