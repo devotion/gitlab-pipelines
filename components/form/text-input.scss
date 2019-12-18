@@ -66,7 +66,7 @@
 
     .input__placeholder {
       background-color: white;
-      color: var(--error);
+      color: var(--error) !important;
     }
 
     &::before {
