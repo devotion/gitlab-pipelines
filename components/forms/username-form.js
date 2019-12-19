@@ -28,6 +28,9 @@ function UsernameForm() {
           id="username"
           name="username"
         />
+        <button type="submit" className="button button-full">
+          Add
+        </button>
       </Form>
     </Formik>
   )

@@ -48,7 +48,7 @@ function Project() {
 
   const { myProjects } = useContext(MyProjectsContext)
 
-  // useInterval(refetchData, 10000)
+  useInterval(refetchData, 10000)
 
   if (myProjects.length && !getSelectedProject(id, myProjects)) {
     router.push('/')
