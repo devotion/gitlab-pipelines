@@ -10,16 +10,11 @@ function TextInput({ placeholder, ...props }) {
 
   return (
     <div
-      className={`text-input ${
-        meta.touched && meta.error ? 'input__error' : ''
-      }`}
+      className="text-input"
+      data-state={meta.touched && meta.error && 'error'}
     >
       <input {...field} {...props} />
-      <div
-        className={`input__placeholder ${
-          hasValue ? 'input__selected' : 'input__not-selected'
-        }`}
-      >
+      <div className="input__placeholder" data-state={hasValue && 'hasValue'}>
         {placeholder}
       </div>
     </div>

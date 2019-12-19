@@ -23,25 +23,6 @@ function Project() {
     credentials: { registry }
   } = useContext(AuthContext)
 
-  // REMOVE THIS - use to fake stuff for notifications
-  // const [fakeStatus, setFakeStatus] = useState('success')
-  // const [fakeLoading, setFakeLoading] = useState(false)
-
-  // React.useEffect(() => {
-  //   setTimeout(() => {
-  //     setFakeLoading(true)
-  //     setFakeStatus('failed')
-  //     setFakeLoading(false)
-  //   }, 3000)
-
-  //   setTimeout(() => {
-  //     setFakeLoading(true)
-  //     setFakeStatus('success')
-  //     setFakeLoading(false)
-  //   }, 6000)
-  // }, [])
-  // REMOVE THIS
-
   const router = useRouter()
   const { id } = router.query
 
@@ -67,7 +48,7 @@ function Project() {
 
   const { myProjects } = useContext(MyProjectsContext)
 
-  useInterval(refetchData, 10000)
+  // useInterval(refetchData, 10000)
 
   if (myProjects.length && !getSelectedProject(id, myProjects)) {
     router.push('/')
