@@ -6,7 +6,7 @@ import TextInput from '../form/text-input'
 import './username-form.scss'
 
 const validationSchema = Yup.object().shape({
-  username: Yup.string()
+  username: Yup.string().required()
 })
 
 function UsernameForm() {
