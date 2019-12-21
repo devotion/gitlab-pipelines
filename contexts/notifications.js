@@ -1,8 +1,8 @@
-import { createContext, useReducer } from 'react'
+import { createContext, useReducer } from 'react';
 
-import { removeObjectPropertyByKey } from '../helpers/general.helpers'
+import { removeObjectPropertyByKey } from '../helpers/general.helpers';
 
-export const NotificationsContext = createContext({})
+export const NotificationsContext = createContext({});
 
 function notificationsReducer(state, action) {
   switch (action.type) {
@@ -10,9 +10,9 @@ function notificationsReducer(state, action) {
       return {
         ...state,
         [action.payload.id]: action.payload
-      }
+      };
     case 'UNTRACK_PIPELINE':
-      return removeObjectPropertyByKey(state, action.payload.id)
+      return removeObjectPropertyByKey(state, action.payload.id);
     case 'SAVE_CURRENT_STATUS':
       return {
         ...state,
@@ -20,14 +20,14 @@ function notificationsReducer(state, action) {
           id: action.payload.id,
           currentStatus: action.payload.currentStatus
         }
-      }
+      };
     default:
-      return state
+      return state;
   }
 }
 
 function NotificationsProvider({ children }) {
-  const [notifications, dispatch] = useReducer(notificationsReducer, {})
+  const [notifications, dispatch] = useReducer(notificationsReducer, {});
 
   function trackPipeline(id) {
     dispatch({
@@ -35,7 +35,7 @@ function NotificationsProvider({ children }) {
       payload: {
         id
       }
-    })
+    });
   }
 
   function untrackPipeline(id) {
@@ -44,7 +44,7 @@ function NotificationsProvider({ children }) {
       payload: {
         id
       }
-    })
+    });
   }
 
   function saveCurrentStatus(id, currentStatus) {
@@ -54,16 +54,16 @@ function NotificationsProvider({ children }) {
         id,
         currentStatus
       }
-    })
+    });
   }
 
   function getCurrentStatus(id) {
-    if (!notifications[id]) return null
-    return notifications[id].currentStatus
+    if (!notifications[id]) return null;
+    return notifications[id].currentStatus;
   }
 
   function isNotification(id) {
-    return Object.prototype.hasOwnProperty.call(notifications, id)
+    return Object.prototype.hasOwnProperty.call(notifications, id);
   }
 
   return (
@@ -79,7 +79,7 @@ function NotificationsProvider({ children }) {
     >
       {children}
     </NotificationsContext.Provider>
-  )
+  );
 }
 
-export default NotificationsProvider
+export default NotificationsProvider;

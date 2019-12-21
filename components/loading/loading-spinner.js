@@ -1,7 +1,7 @@
-import './loading-spinner.scss'
+import './loading-spinner.scss';
 
 function LoadingSpinner() {
-  return <div className="loading-spinner" />
+  return <div className="loading-spinner" />;
 }
 
-export default LoadingSpinner
+export default LoadingSpinner;

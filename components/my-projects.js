@@ -1,14 +1,14 @@
-import { useContext } from 'react'
+import { useContext } from 'react';
 
-import { MyProjectsContext } from '../contexts/my-projects'
-import ProjectCard from './project-card'
+import { MyProjectsContext } from '../contexts/my-projects';
+import ProjectCard from './project-card';
 
-import './my-projects.scss'
+import './my-projects.scss';
 
 function MyProjects() {
-  const { myProjects } = useContext(MyProjectsContext)
+  const { myProjects } = useContext(MyProjectsContext);
 
-  if (myProjects.length === 0) return null
+  if (myProjects.length === 0) return null;
 
   return (
     <div className="my-projects">
@@ -17,7 +17,7 @@ function MyProjects() {
         <ProjectCard key={project.id} {...project} />
       ))}
     </div>
-  )
+  );
 }
 
-export default MyProjects
+export default MyProjects;

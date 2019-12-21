@@ -1,14 +1,14 @@
-import { useContext } from 'react'
-import Link from 'next/link'
+import { useContext } from 'react';
+import Link from 'next/link';
 
-import ProjectForm from './forms/project-form'
-import MyProjects from './my-projects'
-import { AuthContext } from '../contexts/auth'
+import ProjectForm from './forms/project-form';
+import MyProjects from './my-projects';
+import { AuthContext } from '../contexts/auth';
 
-import './sidebar.scss'
+import './sidebar.scss';
 
 function Sidebar() {
-  const { logout } = useContext(AuthContext)
+  const { logout } = useContext(AuthContext);
 
   return (
     <div className="sidebar">
@@ -19,7 +19,7 @@ function Sidebar() {
       <MyProjects />
       <button onClick={logout}>Sign out</button>
     </div>
-  )
+  );
 }
 
-export default Sidebar
+export default Sidebar;

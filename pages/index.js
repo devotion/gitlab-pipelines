@@ -1,31 +1,31 @@
-import { useEffect, useContext } from 'react'
-import Router from 'next/router'
+import { useEffect, useContext } from 'react';
+import Router from 'next/router';
 
-import Layout from '../components/layout'
-import LoadingPage from '../components/loading/loading-page'
-import NotificationsFeature from '../components/home-page/notifications-feature'
-import UsernameForm from '../components/forms/username-form'
-import { AuthContext } from '../contexts/auth'
+import Layout from '../components/layout';
+import LoadingPage from '../components/loading/loading-page';
+import NotificationsFeature from '../components/home-page/notifications-feature';
+import UsernameForm from '../components/forms/username-form';
+import { AuthContext } from '../contexts/auth';
 
-import './index.scss'
+import './index.scss';
 
 function Home() {
   const {
     credentials: { token }
-  } = useContext(AuthContext)
+  } = useContext(AuthContext);
 
   useEffect(() => {
     if (!token) {
-      Router.push('/login')
+      Router.push('/login');
     }
-  }, [token])
+  }, [token]);
 
   if (!token) {
     return (
       <Layout title="Home" showHeader={false}>
         <LoadingPage />
       </Layout>
-    )
+    );
   }
 
   return (
@@ -56,7 +56,7 @@ function Home() {
         </div>
       </div>
     </Layout>
-  )
+  );
 }
 
-export default Home
+export default Home;

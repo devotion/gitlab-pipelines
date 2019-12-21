@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types'
-import Head from 'next/head'
+import PropTypes from 'prop-types';
+import Head from 'next/head';
 
-import Sidebar from './sidebar'
+import Sidebar from './sidebar';
 
-import './layout.scss'
+import './layout.scss';
 
 function Layout({ title, children, showSidebar = true }) {
   return (
@@ -14,12 +14,12 @@ function Layout({ title, children, showSidebar = true }) {
       {showSidebar && <Sidebar />}
       <main>{children}</main>
     </div>
-  )
+  );
 }
 
 Layout.propTypes = {
   title: PropTypes.string,
-  showSidebar: PropTypes.bool,
-}
+  showSidebar: PropTypes.bool
+};
 
-export default Layout
+export default Layout;

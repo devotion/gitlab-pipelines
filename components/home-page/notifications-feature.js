@@ -1,10 +1,10 @@
-import useNotificationsPermission from '../../hooks/useNotificationsPermission'
+import useNotificationsPermission from '../../hooks/useNotificationsPermission';
 
 function NotificationsFeature() {
   const [
     notificationsPermission,
     setNotificationsPermission
-  ] = useNotificationsPermission()
+  ] = useNotificationsPermission();
 
   switch (notificationsPermission) {
     case 'granted':
@@ -20,14 +20,14 @@ function NotificationsFeature() {
             own pipelines if you selected to add the username.
           </p>
         </>
-      )
+      );
     case 'denied':
       return (
         <p>
           You have <strong>disabled</strong> notifications for this app. You can
           change this anytime in your browser settings.
         </p>
-      )
+      );
     default:
       return (
         <>
@@ -45,15 +45,15 @@ function NotificationsFeature() {
             className="button button-full"
             onClick={() => {
               Notification.requestPermission(permission => {
-                setNotificationsPermission(permission)
-              })
+                setNotificationsPermission(permission);
+              });
             }}
           >
             Enable notifications
           </button>
         </>
-      )
+      );
   }
 }
 
-export default NotificationsFeature
+export default NotificationsFeature;

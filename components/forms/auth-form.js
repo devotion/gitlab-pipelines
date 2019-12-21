@@ -1,24 +1,24 @@
-import { useContext } from 'react'
-import { Formik, Form } from 'formik'
-import * as Yup from 'yup'
+import { useContext } from 'react';
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
 
-import TextInput from '../form/text-input'
-import { AuthContext } from '../../contexts/auth'
+import TextInput from '../form/text-input';
+import { AuthContext } from '../../contexts/auth';
 
-import './auth-form.scss'
+import './auth-form.scss';
 
 const validationSchema = Yup.object().shape({
   registry: Yup.string()
     .required('Required')
     .url(),
   token: Yup.string().required('Required')
-})
+});
 
 function AuthForm() {
-  const { login } = useContext(AuthContext)
+  const { login } = useContext(AuthContext);
 
   function onSubmit(values) {
-    login(values.token, values.registry)
+    login(values.token, values.registry);
   }
 
   return (
@@ -39,7 +39,7 @@ function AuthForm() {
         </button>
       </Form>
     </Formik>
-  )
+  );
 }
 
-export default AuthForm
+export default AuthForm;

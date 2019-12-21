@@ -1,38 +1,38 @@
-import { useState, useEffect, useCallback, useContext } from 'react'
-import fetch from 'isomorphic-unfetch'
+import { useState, useEffect, useCallback, useContext } from 'react';
+import fetch from 'isomorphic-unfetch';
 
-import { AuthContext } from '../contexts/auth'
+import { AuthContext } from '../contexts/auth';
 
 function useFetch(endpoint, dependencies = [], defaultData = {}) {
-  const [data, setData] = useState(defaultData)
-  const [fetching, setFetching] = useState(false)
+  const [data, setData] = useState(defaultData);
+  const [fetching, setFetching] = useState(false);
 
   const {
     credentials: { token }
-  } = useContext(AuthContext)
+  } = useContext(AuthContext);
 
   const fetchData = useCallback(async () => {
-    if (!endpoint.includes('https')) return
-    setFetching(true)
+    if (!endpoint.includes('https')) return;
+    setFetching(true);
 
     const response = await fetch(endpoint, {
       headers: { 'Private-Token': token }
-    })
-    const data = await response.json()
+    });
+    const data = await response.json();
 
-    setData(data)
+    setData(data);
 
-    setFetching(false)
-  }, [endpoint, token])
+    setFetching(false);
+  }, [endpoint, token]);
 
   useEffect(() => {
     if (dependencies && Array.isArray(dependencies)) {
-      fetchData()
+      fetchData();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, dependencies)
+  }, dependencies);
 
-  return [data, fetching, fetchData]
+  return [data, fetching, fetchData];
 }
 
-export default useFetch
+export default useFetch;

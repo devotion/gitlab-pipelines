@@ -1,11 +1,11 @@
-import App from 'next/app'
-import AuthProvider from '../contexts/auth'
-import MyProjectsProvider from '../contexts/my-projects'
-import NotificationsProvider from '../contexts/notifications'
+import App from 'next/app';
+import AuthProvider from '../contexts/auth';
+import MyProjectsProvider from '../contexts/my-projects';
+import NotificationsProvider from '../contexts/notifications';
 
 class MyApp extends App {
   render() {
-    const { Component, pageProps } = this.props
+    const { Component, pageProps } = this.props;
 
     return (
       <AuthProvider>
@@ -15,8 +15,8 @@ class MyApp extends App {
           </NotificationsProvider>
         </MyProjectsProvider>
       </AuthProvider>
-    )
+    );
   }
 }
 
-export default MyApp
+export default MyApp;

@@ -1,18 +1,18 @@
-import { useContext } from 'react'
-import Router from 'next/router'
+import { useContext } from 'react';
+import Router from 'next/router';
 
-import AuthForm from '../components/forms/auth-form'
-import { AuthContext } from '../contexts/auth'
+import AuthForm from '../components/forms/auth-form';
+import { AuthContext } from '../contexts/auth';
 
-import './login.scss'
+import './login.scss';
 
 function Login() {
   const {
     credentials: { token, registry }
-  } = useContext(AuthContext)
+  } = useContext(AuthContext);
 
   if (token && registry) {
-    Router.push('/')
+    Router.push('/');
   }
 
   return (
@@ -24,7 +24,7 @@ function Login() {
         browser&apos;s localStorage and nowhere else.
       </p>
     </div>
-  )
+  );
 }
 
-export default Login
+export default Login;

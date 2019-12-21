@@ -1,35 +1,35 @@
-import { useState, useContext } from 'react'
-import { Formik, Form } from 'formik'
-import * as Yup from 'yup'
-import fetch from 'isomorphic-unfetch'
+import { useState, useContext } from 'react';
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
+import fetch from 'isomorphic-unfetch';
 
-import TextInput from '../form/text-input'
-import Dropdown from '../dropdown'
-import LoadingSpinner from '../loading/loading-spinner'
-import { AuthContext } from '../../contexts/auth'
+import TextInput from '../form/text-input';
+import Dropdown from '../dropdown';
+import LoadingSpinner from '../loading/loading-spinner';
+import { AuthContext } from '../../contexts/auth';
 
-import './project-form.scss'
+import './project-form.scss';
 
 const validationSchema = Yup.object().shape({
   project: Yup.string()
-})
+});
 
 function ProjectForm() {
-  const [projects, setProjects] = useState([])
-  const [dropdownActive, setDropdownActive] = useState(false)
-  const [fetchingProjects, setFetchingProjects] = useState(false)
+  const [projects, setProjects] = useState([]);
+  const [dropdownActive, setDropdownActive] = useState(false);
+  const [fetchingProjects, setFetchingProjects] = useState(false);
 
   const {
     credentials: { token, registry }
-  } = useContext(AuthContext)
+  } = useContext(AuthContext);
 
   async function onSubmit(values) {
     if (!values.project) {
-      setDropdownActive(false)
-      return
+      setDropdownActive(false);
+      return;
     }
 
-    setFetchingProjects(true)
+    setFetchingProjects(true);
     const res = await fetch(
       `${registry}/search?scope=projects&search=${values.project}`,
       {
@@ -37,13 +37,13 @@ function ProjectForm() {
           'Private-Token': token
         }
       }
-    )
+    );
 
-    const data = await res.json()
+    const data = await res.json();
 
-    setProjects(data)
-    setFetchingProjects(false)
-    setDropdownActive(true)
+    setProjects(data);
+    setFetchingProjects(false);
+    setDropdownActive(true);
   }
 
   return (
@@ -69,13 +69,13 @@ function ProjectForm() {
           projects={projects}
           fetchingProjects={fetchingProjects}
           closeDropdown={() => {
-            setDropdownActive(false)
+            setDropdownActive(false);
           }}
           dropdownActive={dropdownActive}
         />
       </Form>
     </Formik>
-  )
+  );
 }
 
-export default ProjectForm
+export default ProjectForm;
